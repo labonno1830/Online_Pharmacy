@@ -36,10 +36,10 @@ Route::get('/master',[AdminController::class,'master'])->name('master');
 Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
 Route::get('/product',[AdminController::class,'product'])->name('product');
 Route::get('/category',[AdminController::class,'category'])->name('category');
-Route::post ('/create/medicine',[AdminController::class,'medicines'])->name('medicines');
+Route::post('/create/medicine',[AdminController::class,'medicines'])->name('medicines');
 
 Route::get('/order',[AdminController::class,'order'])->name('order');
 Route::get('/sales',[AdminController::class,'sales'])->name('sales');
 Route::get('/customer',[AdminController::class,'customer'])->name('customer');
-Route::post('/customer',[AdminController::class,'customer'])->name('customer');
+Route::get('/update',[AdminController::class,'update'])->name('update');
 

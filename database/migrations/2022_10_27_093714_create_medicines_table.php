@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('expiry_date');
             $table->string('price');
             $table->string('specification')->nullable();
-            // $table->string('upload');
+            $table->string('upload');
             $table->timestamps();
         });
     }

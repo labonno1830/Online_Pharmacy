@@ -26,6 +26,10 @@ public function sales()
 {
     return view('backend.layout.sales');
 }
+public function update()
+{
+    return view('backend.layout.update');
+}
 public function customer()
 {
     $users=User::all();
@@ -52,6 +56,14 @@ public function medicines(Request $request)
 
     ]
     );
+    $filename='';
+    if($request->hasFile('upload')){
+        $file=$request->file('upload');
+        if($file->isValid()){
+            $filename=date('Ymdhms').'.'.$file->getClientOriginalExtension();
+            $file->storeAs('medicine',$filename);
+        }
+    }
     medicines::create([
     'medicine_name'=>$request->medicine_name,
     'generic_name'=>$request->generic_name,
@@ -60,7 +72,7 @@ public function medicines(Request $request)
     'expiry_date'=>$request->expiry_date,
     'price'=>$request->price,
     'specification'=>$request->specification,
-    // 'upload'=>$request->upload,
+    'upload'=>$filename,
    ]);
 return redirect()->back();
     

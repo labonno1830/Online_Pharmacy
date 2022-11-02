@@ -2,7 +2,7 @@
 @section('content')
 <div class="listbody">
   <div class="container mt-5">
-    <form  action="{{route('medicines')}}" method="POST" class="row g-3">
+    <form  action="{{route('medicines')}}" method="POST" enctype="multipart/form-data" class="row g-3">
     @csrf
     <h4>Add Medicine</h4>
       <div class="col-md-6">
@@ -38,13 +38,6 @@
       <label for="upload" class="form-label text-dark">Upload Image</label>
       <input type="file" class="form-control" name="upload" for="upload" >
     </div>
-    <!-- <div class="col-md-6 my-4">
-      <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-      <select class="form-select" id="inlineFormSelectPref">
-        <option selected>Active</option>
-        <option value="1">Inactive</option>
-      </select>
-    </div> -->
     <div class="col-12 mt-2">
       <button type="submit" class="btn btn-primary">Save</button>
     </div>
@@ -64,6 +57,7 @@
         <th scope="col">Specification</th>
         <th scope="col">Status</th>
         <th scope="col">Upload Image</th>
+        <th scope="col">Action</th>
         <!-- <th scope="col">Action</th> -->
       </tr>
     </thead>
@@ -78,7 +72,24 @@
         <td>{{$medicine->expiry_date}}</td>
         <td>{{$medicine->price}}</td>
         <td>{{$medicine->specification}}</td>
-        <!-- <td>{{$medicine->upload}}</td> -->
+        <td>{{$medicine->status}}</td>
+        <td>
+          @if($medicine->upload !=null)
+          <img src="{{asset('/uploads/medicine/'.$medicine->upload)}}" alt=""style="height:70px;width:70px;" >
+          @endif
+        </td>
+        <td>
+          {{$medicine->action}}
+          <div class="row">
+            <div class="col">
+            <a class="btn btn-primary" href="{{route('update')}}" role="button"><i class="fa-solid fa-pen-nib"></i></a>
+            </div>
+            <div class="col">
+            <a class="btn btn-danger" href="#" role="button"><i class="fa-solid fa-trash"></i></a>
+            </div>
+          </div>
+
+        </td>
       </tr>
       @endforeach
       <!-- <tr>
