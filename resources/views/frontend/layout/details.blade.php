@@ -6,13 +6,13 @@
             <div class="col-3">
                 <div class="card border-2 bg-light">
                     <div class="card body">
-                        <img src="backend/img/napa.jpg" class="img-fluid" alt="">
+                        <img src="{{asset('/uploads/medicine/'.$medicine->upload)}}" class="img-fluid" alt="">
                     </div>
                 </div>
             </div>
             <div class="col-lg-7">
-                <h3>Napa</h3>
-                <h5>Price:৳20</h5>
+                <h3>{{$medicine->medicine_name}}</h3>
+                <h5>Price:৳{{$medicine->price}}</h5>
                 <div class="product-quantity my-2">
                     <!-- <span>Quantity</span> -->
                     <div class="d-flex flex-row">
@@ -34,13 +34,14 @@
                 <a class="btn btn-outline-light  bg-success  text-light" href="">In stock</a>
                 <a class="btn btn-outline-light  bg-secondary  text-light" href="{{route('cart')}}">Add to cart</a>
             </div>
+            <div>{{$medicine->specification}}</div>
         </div>
 
     <!-- <div class=" text-center px-2 py-2">
         <h1>Medicine Specifications</h1>
     </div> -->
 
-<div class="specification">
+<!-- <div class="specification">
     <div>
         <h3>Information about Napa 500mg 10pcs</h3>
     </div>
@@ -96,7 +97,7 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
     <!-- <ul>
         <strong>Information about Napa 500mg 10pcs</strong>
         <li><strong>Paracetamol is indicated in:</strong></li>
