@@ -49,7 +49,7 @@
               </div>
               @if(Auth::user())
               <div class="col-md-2">
-              <a class="btn btn-outline-light bg-light text-dark mx-2 " href="{{route('home')}}">logout</a>
+              <a class="btn btn-outline-light bg-light text-dark mx-2 " href="{{route('logout')}}">logout</a>
               </div>
               @else
               <div class="col-md-2">
@@ -60,15 +60,7 @@
                 <a class="btn btn-outline-light  bg-light  text-dark mx-2 " href="{{route('cart')}}">Cart</a>
               </div>
             
-            <!-- <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              @if(Auth::user())
-              <a class="btn btn-outline-light bg-light text-dark mx-2 " href="{{route('home')}}">logout</a>
-              @else
-              <a class="btn btn-outline-light bg-light text-dark mx-2 " href="{{route('login')}}">login</a>
-              @endif
-              <a class="btn btn-outline-light  bg-light  text-dark mx-2 " href="{{route('cart')}}">Cart</a>
-              </form> -->
+            
           </div>
         </div>
       </nav>

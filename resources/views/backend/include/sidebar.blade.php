@@ -43,7 +43,7 @@
           </a>
         </ul>
       </div>
-      <a href="{{route('home')}}">
+      <a href="{{route('logout')}}">
         <span class="icon">
            <i class="fas fa-sign-out-alt"></i>
         </span>

@@ -24,7 +24,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><span class="badge p-2 rounded-pill text-bg-primary">Done</span></td>
+        <td><span class="badge rounded-pill text-bg-primary">Done</span></td>
         
       </tr>
       <tr>
@@ -34,7 +34,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><span class="badge p-2 rounded-pill text-bg-danger">Pending</span></td>
+        <td><span class="badge rounded-pill text-bg-danger">Pending</span></td>
         
       </tr>
       <tr>

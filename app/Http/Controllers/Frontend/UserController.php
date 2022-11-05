@@ -11,13 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
-  public function home()
-{
-  
-    return view('home');
-}
-  public function login()
+public function login()
 {
     return view('login'); 
 
@@ -85,5 +79,10 @@ public function login_post(Request $request)
         'email' => 'The provided credentials do not match our records.',
       ])->onlyInput('email');
         
+}
+public function logout(Request $request)
+{
+  Auth::logout();
+  return redirect('/');
 }
 }

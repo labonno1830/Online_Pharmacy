@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('specification')->nullable();
             $table->string('upload');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

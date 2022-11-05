@@ -11,7 +11,6 @@
 </section>
 <section class="product">
     <div class="container py-5">
-
         <div class="row">
             @foreach($medicines as $key=>$medicine)
             <div class="col-lg-2 text-center ">

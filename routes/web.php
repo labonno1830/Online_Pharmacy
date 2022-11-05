@@ -18,9 +18,10 @@ use App\Http\Controllers\Backend\AdminController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/',[UserController::class,'home'])->name('home');
-Route::get('/homepage',[UserController::class,'homepage'])->name('homepage');
+
+Route::get('/',[UserController::class,'homepage'])->name('homepage');
 Route::get('/login',[UserController::class,'login'])->name('login');
+Route::get('/logout',[UserController::class,'logout'])->name('logout');
 Route::post('/login/post',[UserController::class,'login_post'])->name('login_post');
 
 Route::get('/master',[UserController::class,'master'])->name('master');
@@ -36,10 +37,13 @@ Route::get('/master',[AdminController::class,'master'])->name('master');
 Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
 Route::get('/product',[AdminController::class,'product'])->name('product');
 Route::get('/category',[AdminController::class,'category'])->name('category');
-Route::post ('/create/medicine',[AdminController::class,'medicines'])->name('medicines');
+Route::post('/create/medicine',[AdminController::class,'medicines'])->name('medicines');
+Route::get('/editmed/{id}',[AdminController::class,'editmed'])->name('editmed');
+Route::put('/updatemed/{id}',[AdminController::class,'updatemed'])->name('updatemed');
+Route::delete('/deletemed/{id}',[AdminController::class,'deletemed'])->name('deletemed');
 
 Route::get('/order',[AdminController::class,'order'])->name('order');
 Route::get('/sales',[AdminController::class,'sales'])->name('sales');
 Route::get('/customer',[AdminController::class,'customer'])->name('customer');
-Route::get('/update',[AdminController::class,'update'])->name('update');
+
 

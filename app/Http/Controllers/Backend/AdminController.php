@@ -77,4 +77,52 @@ public function medicines(Request $request)
 return redirect()->back();
     
 }
+public function editmed($id){
+    $med=medicines::find($id);
+// dd($med);
+    return view('backend.layout.update',compact('med'));
+}
+public function updatemed(Request $request)
+{
+    // dd($request->all());
+   $med=medicines::find($request->id);
+    $request->validate(
+    [
+        'medicine_name'=>['required'],
+        'generic_name'=>['required'],
+        'quantity'=>['required'],
+        'expiry_date'=>['required'],
+        'price'=>['required'],
+
+    ]
+    );
+    $filename='';
+    if($request->hasFile('upload')){
+        $file=$request->file('upload');
+        if($file->isValid()){
+            $filename=date('Ymdhms').'.'.$file->getClientOriginalExtension();
+            $file->storeAs('medicine',$filename);
+        }
+    }
+    medicines::find($request->id)->update([
+    'medicine_name'=>$request->medicine_name,
+    'generic_name'=>$request->generic_name,
+    'brand_name'=>$request->brand_name,
+    'quantity'=>$request->quantity,
+    'expiry_date'=>$request->expiry_date,
+    'price'=>$request->price,
+    'specification'=>$request->specification,
+    'upload'=>$filename,
+   ]);
+return redirect()->back();
+    
+}
+public function deletemed($id){
+
+    $med=medicines::find($id)->delete();
+    return redirect()->back();
+}
+
+
+
 }

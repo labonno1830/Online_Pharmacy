@@ -32,7 +32,7 @@
     </div>
     <div class="col-md-6">
         <label for="specification" class="form-label text-dark">Specification</label>
-        <input class="form-control" type="text" name="specification" for="specification" >
+        <textarea class="form-control" type="text" name="specification" for="specification" rows="10" ></textarea>
     </div>
     <div class="col-md-6">
       <label for="upload" class="form-label text-dark">Upload Image</label>
@@ -72,47 +72,36 @@
         <td>{{$medicine->expiry_date}}</td>
         <td>{{$medicine->price}}</td>
         <td>{{$medicine->specification}}</td>
-        <td>{{$medicine->status}}</td>
+        <td>{{$medicine->status}}
+            <!-- <div class="col">
+              <a class="btn btn-primary rounded-pill" href="#" role="button">Active</a>
+              <a class="btn btn-danger rounded-pill" href="#" role="button">Inctive</a>
+            </div> -->
+        </td>
         <td>
           @if($medicine->upload !=null)
-          <img src="{{asset('/uploads/medicine/'.$medicine->upload)}}" alt=""style="height:70px;width:70px;" >
+          <img src="{{asset('/uploads/medicine/'.$medicine->upload)}}" alt=""width="200" height="200" >
           @endif
         </td>
         <td>
           {{$medicine->action}}
           <div class="row">
             <div class="col">
-            <a class="btn btn-primary" href="{{route('update')}}" role="button"><i class="fa-solid fa-pen-nib"></i></a>
+            <a class="btn btn-primary" href="{{route('editmed',$medicine->id)}}" role="button"><i class="fa-solid fa-pen-nib"></i></a>
             </div>
             <div class="col">
-            <a class="btn btn-danger" href="#" role="button"><i class="fa-solid fa-trash"></i></a>
+            <form action="{{route('deletemed',$medicine->id)}}" method="POST">
+              @csrf
+              @method('DELETE')
+              <a class="btn btn-danger" href="#" role="button"><i class="fa-solid fa-trash"></i></a>
+            </form>
             </div>
           </div>
 
         </td>
       </tr>
       @endforeach
-      <!-- <tr>
-        <th scope="row">2</th>
-        <td></td>
-        <td>Fexo</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td></td>
-        <td>Napa</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr> -->
-    </tbody>
+     </tbody>
   </table>
   </div>
   <div class="col-12 mt-3">
