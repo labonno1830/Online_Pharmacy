@@ -40,7 +40,7 @@ Route::get('/category',[AdminController::class,'category'])->name('category');
 Route::post('/create/medicine',[AdminController::class,'medicines'])->name('medicines');
 Route::get('/editmed/{id}',[AdminController::class,'editmed'])->name('editmed');
 Route::put('/updatemed/{id}',[AdminController::class,'updatemed'])->name('updatemed');
-Route::delete('/deletemed/{id}',[AdminController::class,'deletemed'])->name('deletemed');
+Route::get('/deletemed/{id}',[AdminController::class,'deletemed'])->name('deletemed');
 
 Route::get('/order',[AdminController::class,'order'])->name('order');
 Route::get('/sales',[AdminController::class,'sales'])->name('sales');

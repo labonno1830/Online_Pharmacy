@@ -90,11 +90,7 @@
             <a class="btn btn-primary" href="{{route('editmed',$medicine->id)}}" role="button"><i class="fa-solid fa-pen-nib"></i></a>
             </div>
             <div class="col">
-            <form action="{{route('deletemed',$medicine->id)}}" method="POST">
-              @csrf
-              @method('DELETE')
-              <a class="btn btn-danger" href="#" role="button"><i class="fa-solid fa-trash"></i></a>
-            </form>
+           <a class="btn btn-danger" href="{{route('deletemed',$medicine->id)}}" role="button"><i class="fa-solid fa-trash"></i></a>
             </div>
           </div>
 
