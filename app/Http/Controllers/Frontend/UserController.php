@@ -21,6 +21,21 @@ public function homepage()
   $medicines=medicines::all();
     return view('frontend.layout.homepage',compact('medicines'));
 }
+
+public function searchmed(Request $request){
+ 
+  if($request->search){
+    $searchmed = medicines::where('medicine_name','LIKE','%'.$request->search.'%')->latest()->paginate(15);
+    return view('frontend.layout.search', compact('searchmed'));
+
+  }
+  else{
+    return redirect()->back()->with('message','Empty Search');
+
+  }
+
+}
+
 public function registration()
 {
     return view('registration');

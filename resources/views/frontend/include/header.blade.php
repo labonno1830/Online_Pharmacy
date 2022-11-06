@@ -18,7 +18,7 @@
           <span class="icon">
              <i class="fa-solid fa-2x fa-suitcase-medical"></i>
           </span>
-          <b>Online Pharmacy</b>
+          <strong>epharma</strong>
         </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,9 +43,9 @@
               
             </ul>
 
-            <form class="row" role="search">
+            <form class="row" role="search" method="GET" action="{{url('/search')}}" >
               <div class="col-md-7"> 
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2" type="search" name="search" value="{{Request::get('search')}}" placeholder="Search medicine" aria-label="Search">
               </div>
               @if(Auth::user())
               <div class="col-md-2">
@@ -59,7 +59,7 @@
               <div class="col-md-3">
                 <a class="btn btn-outline-light  bg-light  text-dark mx-2 " href="{{route('cart')}}">Cart</a>
               </div>
-            
+            </form>
             
           </div>
         </div>

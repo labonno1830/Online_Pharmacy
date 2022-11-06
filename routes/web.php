@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\AdminController;
 // });
 
 Route::get('/',[UserController::class,'homepage'])->name('homepage');
+Route::get('/search',[UserController::class,'searchmed'])->name('searchmed');
 Route::get('/login',[UserController::class,'login'])->name('login');
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
 Route::post('/login/post',[UserController::class,'login_post'])->name('login_post');
