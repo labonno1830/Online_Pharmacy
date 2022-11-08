@@ -33,15 +33,24 @@ Route::get('/details/{id}',[UserController::class,'details'])->name('details');
 Route::get('/cart',[UserController::class,'cart'])->name('cart');
 Route::get('/invoice',[UserController::class,'invoice'])->name('invoice');
 
+Route::get('/userdashboard',[UserController::class,'userdashboard'])->name('userdashboard');
+Route::get('/edituser/{id}',[UserController::class,'edituser'])->name('edituser');
+Route::put('/updateuser/{id}',[UserController::class,'updateuser'])->name('updateuser');
+
 
 Route::get('/master',[AdminController::class,'master'])->name('master');
 Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
 Route::get('/product',[AdminController::class,'product'])->name('product');
+
 Route::get('/category',[AdminController::class,'category'])->name('category');
 Route::post('/create/medicine',[AdminController::class,'medicines'])->name('medicines');
 Route::get('/editmed/{id}',[AdminController::class,'editmed'])->name('editmed');
 Route::put('/updatemed/{id}',[AdminController::class,'updatemed'])->name('updatemed');
 Route::get('/deletemed/{id}',[AdminController::class,'deletemed'])->name('deletemed');
+
+Route::get('/adminprofile',[AdminController::class,'adminprofile'])->name('adminprofile');
+Route::get('/editadmin/{id}',[AdminController::class,'editadmin'])->name('editadmin');
+Route::put('/updateadmin/{id}',[AdminController::class,'updateadmin'])->name('updateadmin');
 
 Route::get('/order',[AdminController::class,'order'])->name('order');
 Route::get('/sales',[AdminController::class,'sales'])->name('sales');

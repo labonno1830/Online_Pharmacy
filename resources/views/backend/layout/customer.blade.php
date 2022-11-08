@@ -7,7 +7,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <!-- <th scope="col">Image</th> -->
+        <th scope="col">Image</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Phone</th>
@@ -20,6 +20,9 @@
     @if($customer->role_id==2)
       <tr>
         <th scope="row">{{$key+1}}</th>
+        <td> @if($customer->upload !=null)
+              <img src="{{asset('/uploads/profile/'.$customer->upload)}}" alt="" width="100" height="100">
+              @endif</td>
         <td>{{$customer->name}}</td>
         <td>{{$customer->email}}</td>
         <td>{{$customer->phone}}</td>

@@ -52,6 +52,14 @@ public function cart()
 public function invoice()
 {
     return view('frontend.layout.invoice');
+
+}
+
+public function userdashboard()
+{
+  $users=User::all();  
+  return view('frontend.layout.userdashboard',compact('users'));
+
 }
 public function master()
 {
@@ -61,8 +69,17 @@ public function master()
 
 public function register(Request $request)
 {
-   
+  $filename='';
+  if($request->hasFile('upload')){
+      $file=$request->file('upload');
+      if($file->isValid()){
+          $filename=date('Ymdhms').'.'.$file->getClientOriginalExtension();
+          $file->storeAs('profile',$filename);
+      }
+  } 
+  
   User::create([
+    'upload'=>$filename,
     'name'=>$request->name,
     'phone'=>$request->phone,
     'email'=>$request->email,
@@ -70,6 +87,34 @@ public function register(Request $request)
    ]);
 return redirect()->route('login');
     
+}
+public function edituser($id){
+ 
+  $cus=User::find($id);
+  return view('frontend.layout.updateuser',compact('cus'));
+}
+public function updateuser(Request $request)
+{
+  // dd($request->all());
+  $cus=User::find($request->id);
+
+  $filename='';
+  if($request->hasFile('upload')){
+      $file=$request->file('upload');
+      if($file->isValid()){
+          $filename=date('Ymdhms').'.'.$file->getClientOriginalExtension();
+          $file->storeAs('profile',$filename);
+      }
+  }
+  User::find($request->id)->update([
+    'upload'=>$filename,
+    'name'=>$request->name,
+    'phone'=>$request->phone,
+    'email'=>$request->email,
+    'password'=>Hash::make($request->password),
+ ]);
+return redirect()->back();
+  
 }
 
 public function login_post(Request $request)

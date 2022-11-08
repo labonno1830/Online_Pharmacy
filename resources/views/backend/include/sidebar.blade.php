@@ -43,12 +43,20 @@
           </a>
         </ul>
       </div>
-      <a href="{{route('logout')}}">
+      <div>
+      <a href="{{route('adminprofile')}}" class="active">
+        <span class="icon">
+        <i class="fa-solid fa-user"></i>
+        </span>
+        <span class="text">Admin</span>
+      </a>
+      <a href="{{route('logout')}}" class="active">
         <span class="icon">
            <i class="fas fa-sign-out-alt"></i>
         </span>
         <span class="text"> logout</span>
       </a>
+      </div>
     </nav>
   </div>
   

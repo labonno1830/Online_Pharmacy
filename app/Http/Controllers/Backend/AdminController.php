@@ -7,6 +7,7 @@ use App\Models\medicine;
 use App\Models\medicines;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -26,23 +27,15 @@ public function sales()
 {
     return view('backend.layout.sales');
 }
-public function update()
-{
-    return view('backend.layout.update');
-}
-public function customer()
-{
-    $users=User::all();
-    return view('backend.layout.customer',compact('users'));
-}
-    public function category()
-{
-    $medicines=medicines::all();
-    return view('backend.layout.category',compact('medicines'));
-}
 public function master()
 {
     return view('backend.layout.dashboard');
+}
+
+public function category()
+{
+    $medicines=medicines::all();
+    return view('backend.layout.category',compact('medicines'));
 }
 public function medicines(Request $request)
 {
@@ -123,6 +116,46 @@ public function deletemed($id){
     return redirect()->back();
 }
 
+public function customer()
+{
+    $users=User::all();
+    return view('backend.layout.customer',compact('users'));
+}
+
+public function adminprofile()
+{
+  $users=User::all();  
+  return view('backend.layout.adminprofile',compact('users'));
+
+}
+public function editadmin($id){
+ 
+    $cus=User::find($id);
+    return view('backend.layout.updateadmin',compact('cus'));
+  }
+public function updateadmin(Request $request)
+{
+    dd($request->all());
+    $cus=User::find($request->id);
+  
+    $filename='';
+    if($request->hasFile('upload')){
+        $file=$request->file('upload');
+        if($file->isValid()){
+            $filename=date('Ymdhms').'.'.$file->getClientOriginalExtension();
+            $file->storeAs('profile',$filename);
+        }
+    }
+    User::find($request->id)->update([
+      'upload'=>$filename,
+      'name'=>$request->name,
+      'phone'=>$request->phone,
+      'email'=>$request->email,
+      'password'=>Hash::make($request->password),
+   ]);
+  return redirect()->back();
+    
+}
 
 
 }

@@ -22,12 +22,12 @@
                  </ul>
              </div> -->
              <div class="col-md-6 item text">
-                 <h3>Online Pharmacy</h3>
-                 <p>Online Pharmacy brings to you a digital platform to provide you with best & convenient healthcare, convenient and safe and secure online shopping experience. We endeavor to provide products at a very competitive price coupled with highest standards of delivery to customers.</p>
+                 <h3>epharma</h3>
+            <p>epharma brings to you a digital platform to provide you with best & convenient healthcare convenient and safe and secure online shopping experience. We endeavor to provide products at a very competitive price coupled with highest standards of delivery to customers.</p>
              </div>
              
          </div>
-         <p class="copyright">Copyright © 2022 Online Pharmacy. All rights reserved</p>
+         <p class="copyright">Copyright © 2022 epharma. All rights reserved</p>
      </div>
    </div>
  </footer>

@@ -12,8 +12,6 @@
             <div class="col-lg-4 text-center ">
               <div class="card border-0 bg-primary"  >
                 <div class="card body mt-3" >
-                  <!-- <i class="fa-solid fa-2x fa-house-medical"></i>
-                  <h3>Total Categories</h3> -->
                   <i class="fa-sharp fa-2x fa-solid fa-tablets"></i>
                     <h3>Total medicines</h3>
                   <h5>3</h5>
@@ -31,16 +29,7 @@
               </div>
               
             </div>
-            <!-- <div class="col-lg-3 text-center">
-              <div class="card border-0 bg-primary">
-                <div class="card body mt-3">
-                  <i class="fa-sharp fa-2x fa-solid fa-tablets"></i>
-                    <h3>Total medicines</h3>
-                    <h5>3</h5>
-                </div>
-              </div>
-              
-            </div> -->
+           
             <div class="col-lg-4 text-center">
               <div class="card border-0 bg-primary">
                 <div class="card body mt-3">
@@ -62,7 +51,6 @@
             </div>
           </div>
         </div>
-      </div> 
-    </div>  
+      </div>   
 @endsection
 

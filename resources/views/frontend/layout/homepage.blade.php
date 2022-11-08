@@ -13,6 +13,7 @@
     <div class="container py-5">
         <div class="row">
             @foreach($medicines as $key=>$medicine)
+            @if($medicine->status == 1 && $medicine->quantity != 0)
             <div class="col-lg-2 text-center ">
                 <div class="card border-0 bg-light">
                     <div class="card body">
@@ -26,6 +27,7 @@
                 <p>{{$medicine->price}}</p>
                 <a class="btn btn-outline-light bg-primary text-light m-2" href="{{route('details',$medicine->id)}}">View Details</a>
             </div>
+            @endif
             @endforeach
         </div>
     </div>

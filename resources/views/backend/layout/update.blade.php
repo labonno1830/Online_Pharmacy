@@ -45,7 +45,7 @@
       <img src="{{'/uploads/medicine'.$med->image}}">
     </div>
     <div class="col-12 mt-2">
-      <button type="submit" class="btn btn-primary">Update</button>
+    <button class="btn btn-primary profile-button" type="submit">Update</button>
     </div>
     </form>
   </div>
