@@ -44,20 +44,24 @@
             </ul>
 
             <form class="row" role="search" method="GET" action="{{url('/search')}}" >
-              <div class="col-md-7"> 
+              <div class="col-md-6"> 
                 <input class="form-control me-2" type="search" name="search" value="{{Request::get('search')}}" placeholder="Search medicine" aria-label="Search">
               </div>
               @if(Auth::user())
               <div class="col-md-2">
-              <a class="btn btn-outline-light bg-light text-dark mx-2 " href="{{route('logout')}}">logout</a>
+                <a class="btn btn-outline-light  bg-light  text-dark  " href="{{route('userdashboard')}}"><i class="fa-solid fa-user"></i></a>
+              </div>
+              <div class="col-md-2">
+              <a class="btn btn-outline-light bg-light text-dark " href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i></a>
               </div>
               @else
               <div class="col-md-2">
-                <a class="btn btn-outline-light bg-light text-dark mx-2 " href="{{route('login')}}">login</a>
+                <a class="btn btn-outline-light bg-light text-dark" href="{{route('login')}}">login</a>
               </div>
               @endif
-              <div class="col-md-3">
-                <a class="btn btn-outline-light  bg-light  text-dark mx-2 " href="{{route('cart')}}">Cart</a>
+              
+              <div class="col-md-2">
+                <a class="btn btn-outline-light  bg-light  text-dark" href="{{route('cart')}}"><i class="fa-solid fa-cart-shopping"></i></a>
               </div>
             </form>
             

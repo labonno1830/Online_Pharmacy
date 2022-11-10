@@ -57,7 +57,7 @@ public function invoice()
 
 public function userdashboard()
 {
-  $users=User::all();  
+  $users=Auth::user();  
   return view('frontend.layout.userdashboard',compact('users'));
 
 }

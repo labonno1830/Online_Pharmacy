@@ -31,7 +31,7 @@
                         </button>
                     </div>
                 </div>
-                <a class="btn btn-outline-light  bg-success  text-light" href="">In stock</a>
+                <!-- <a class="btn btn-outline-light  bg-success  text-light" href="">In stock</a> -->
                 <a class="btn btn-outline-light  bg-secondary  text-light" href="{{route('cart')}}">Add to cart</a>
             </div>
             <h3><strong>Medicine Specifications</strong> </h3>
