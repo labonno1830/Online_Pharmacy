@@ -30,7 +30,6 @@ Route::get('/registration',[UserController::class,'registration'])->name('regist
 Route::post ('/create/user',[UserController::class,'register'])->name('register');
 
 Route::get('/details/{id}',[UserController::class,'details'])->name('details');
-Route::get('/cart',[UserController::class,'cart'])->name('cart');
 Route::get('/invoice',[UserController::class,'invoice'])->name('invoice');
 
 Route::get('/userdashboard',[UserController::class,'userdashboard'])->name('userdashboard');
@@ -56,4 +55,7 @@ Route::get('/order',[AdminController::class,'order'])->name('order');
 Route::get('/sales',[AdminController::class,'sales'])->name('sales');
 Route::get('/customer',[AdminController::class,'customer'])->name('customer');
 
-
+// cart route
+Route::get('/cart',[UserController::class,'cart'])->name('cart');
+Route::get('/addtocart/{id}',[UserController::class,'addtocart'])->name('addtocart');
+Route::post('/cart/order',[UserController::class,'order'])->name('cart_order');

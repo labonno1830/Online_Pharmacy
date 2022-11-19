@@ -34,7 +34,7 @@
     </div>
     <div class="col-md-6">
         <label for="specification" class="form-label text-dark">Specification</label>
-        <input class="form-control" type="text" name="specification" for="specification" value="{{$med->specification}}">
+        <textarea class="form-control" type="text" name="specification" for="specification" rows="10"  value="{{$med->specification}}"></textarea>
     </div>
 
     <div class="col-md-6">

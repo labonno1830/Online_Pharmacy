@@ -21,9 +21,11 @@
                      <li><a href="#">Medicine</a></li>
                  </ul>
              </div> -->
-             <div class="col-md-6 item text">
+             <div class="col-md-8 item text">
                  <h3>epharma</h3>
-            <p>epharma brings to you a digital platform to provide you with best & convenient healthcare convenient and safe and secure online shopping experience. We endeavor to provide products at a very competitive price coupled with highest standards of delivery to customers.</p>
+            <p>
+    epharma brings to you a digital platform to provide you with best & convenient healthcare convenient and safe and secure online shopping experience. We endeavor to provide products at a very competitive price coupled with highest standards of delivery to customers.
+            </p>
              </div>
              
          </div>

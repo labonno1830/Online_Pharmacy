@@ -2,6 +2,11 @@
 @section('content')
 <section class="main">
     <div class="container py-5">
+    @if(session()->has('message'))
+      <div class="alert alert-success">
+        {{session()->get('message')}}
+      </div>
+      @endif
         <div class="row py-4">
             <div class="col-lg-7 pt-5 text-center">
                 <h1>“Always laugh when you can, it is cheap medicine.” </h1>
@@ -32,7 +37,4 @@
         </div>
     </div>
 </section>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
-</script>
 @endsection

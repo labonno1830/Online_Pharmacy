@@ -11,8 +11,7 @@
 
             <div class="col-md-10">
                 <label for="name" class="form-label text-dark">Name</label>
-                <input class="form-control" type="text" name="name" placeholder="Enter your name" for="name"
-                    value="{{$cus->name}}">
+                <input class="form-control" type="text" name="name" placeholder="Enter your name" for="name" value="{{$cus->name}}">
             </div>
 
             <div class="col-md-10">
