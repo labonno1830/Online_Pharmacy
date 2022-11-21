@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone');
             $table->string('address');
-            $table->string('med_id');
             $table->string('total');
             $table->timestamps();
             

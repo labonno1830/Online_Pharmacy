@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\medicine;
 use App\Models\medicines;
+use App\Models\orderlist;
+use App\Models\sub_orderlist;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +23,13 @@ class AdminController extends Controller
 }
 public function order()
 {
-    return view('backend.layout.order');
+    $odr=orderlist::all();
+    return view('backend.layout.order', compact('odr'));
+}
+public function sub_order()
+{
+    $sub=sub_orderlist::all();
+    return view('backend.layout.sub_orderlist', compact('sub'));
 }
 public function sales()
 {

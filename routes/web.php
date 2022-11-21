@@ -52,6 +52,7 @@ Route::get('/editadmin/{id}',[AdminController::class,'editadmin'])->name('editad
 Route::put('/updateadmin/{id}',[AdminController::class,'updateadmin'])->name('updateadmin');
 
 Route::get('/order',[AdminController::class,'order'])->name('order');
+Route::get('/sub_order',[AdminController::class,'sub_order'])->name('sub_order');
 Route::get('/sales',[AdminController::class,'sales'])->name('sales');
 Route::get('/customer',[AdminController::class,'customer'])->name('customer');
 
@@ -59,3 +60,4 @@ Route::get('/customer',[AdminController::class,'customer'])->name('customer');
 Route::get('/cart',[UserController::class,'cart'])->name('cart');
 Route::get('/addtocart/{id}',[UserController::class,'addtocart'])->name('addtocart');
 Route::post('/cart/order',[UserController::class,'order'])->name('cart_order');
+// Route::get('/deleteodr/{id}',[UserController::class,'deleteodr'])->name('deleteodr');

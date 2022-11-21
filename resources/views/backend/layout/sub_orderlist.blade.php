@@ -2,29 +2,29 @@
 @section('content')
 <div class="listbody">
   <div class="container mt-5">
-    <h4>Order list</h4>
+    <h4>Sub-order list</h4>
     <table class="table bg-light mt-3">
     <thead>
       <tr>
         <th scope="col">#</th>
         <!-- <th scope="col">Invoice No</th> -->
-        <th scope="col">Name</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Address</th>
-        <th scope="col">Total</th>
-        <th scope="col"> Delivery Status</th>
+        <th scope="col">Medicine Name</th>
+        <th scope="col">Order ID</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Sub total</th>
         <!-- <th scope="col">Action</th> -->
       </tr>
     </thead>
     <tbody>
-    @foreach($odr as $key=>$orderlist)
+    @foreach($sub as $key=>$sub_orderlist)
       <tr>
         <th scope="row">{{$key+1}}</th>
-        <td>{{$orderlist->name}}</td>
-        <td>{{$orderlist->phone}}</td>
-        <td>{{$orderlist->address}}</td>
-        <td>{{$orderlist->total}}</td>
-        <td></td>
+        <td>{{$sub_orderlist->med_name}}</td>
+        <td>{{$sub_orderlist->order_id}}</td>
+        <td>{{$sub_orderlist->price}}</td>
+        <td>{{$sub_orderlist->quantity}}</td>
+        <td>{{$sub_orderlist->sub_total}}</td>
       </tr>
       @endforeach
     </tbody>

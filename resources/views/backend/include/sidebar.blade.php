@@ -31,9 +31,15 @@
           </a> -->
           <a href="{{route('order')}}" class="active">
             <span class="icon">
-              <i class="fa-solid fa-clipboard"></i>
+            <i class="fa-solid fa-address-book"></i>
             </span>
             <span class="text">Orders</span>
+          </a>
+          <a href="{{route('sub_order')}}" class="active">
+            <span class="icon">
+              <i class="fa-solid fa-clipboard"></i>
+            </span>
+            <span class="text">Sub-orderlist</span>
           </a>
           <a href="{{route('sales')}}" class="active">
             <span class="icon">

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sub_orderlists', function (Blueprint $table) {
             $table->id();
-            $table->string('med_id');
+            $table->string('med_name');
             $table->string('order_id');
             $table->string('price');
             $table->string('quantity');
