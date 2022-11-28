@@ -41,7 +41,7 @@ Route::get('/master',[AdminController::class,'master'])->name('master');
 Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
 Route::get('/product',[AdminController::class,'product'])->name('product');
 
-Route::get('/category',[AdminController::class,'category'])->name('category');
+Route::get('/add_medicine',[AdminController::class,'add_medicine'])->name('add_medicine');
 Route::post('/create/medicine',[AdminController::class,'medicines'])->name('medicines');
 Route::get('/editmed/{id}',[AdminController::class,'editmed'])->name('editmed');
 Route::put('/updatemed/{id}',[AdminController::class,'updatemed'])->name('updatemed');
@@ -53,11 +53,15 @@ Route::put('/updateadmin/{id}',[AdminController::class,'updateadmin'])->name('up
 
 Route::get('/order',[AdminController::class,'order'])->name('order');
 Route::get('/sub_order',[AdminController::class,'sub_order'])->name('sub_order');
-Route::get('/sales',[AdminController::class,'sales'])->name('sales');
+
+Route::get('/supplier',[AdminController::class,'supplier'])->name('supplier');
+Route::post('/create/supplier',[AdminController::class,'suppliers'])->name('suppliers');
+Route::get('/delete_supplier/{id}',[AdminController::class,'delete_supplier'])->name('delete_supplier');
+
 Route::get('/customer',[AdminController::class,'customer'])->name('customer');
 
 // cart route
 Route::get('/cart',[UserController::class,'cart'])->name('cart');
 Route::get('/addtocart/{id}',[UserController::class,'addtocart'])->name('addtocart');
 Route::post('/cart/order',[UserController::class,'order'])->name('cart_order');
-// Route::get('/deleteodr/{id}',[UserController::class,'deleteodr'])->name('deleteodr');
+Route::get('/deleteodr/{id}',[UserController::class,'deleteodr'])->name('deleteodr');

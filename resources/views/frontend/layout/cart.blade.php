@@ -53,7 +53,7 @@
                                         <p class="mb-0" style="font-weight: 500;"> ৳{{$total}} </p>
                                     </td>
                                     <td class="align-middle">
-                                        <a class="btn btn-danger" href="" role="button"><i class="fa-solid fa-trash"></i></a>
+                                        <a class="btn btn-danger" href="{{route('deleteodr',$data->rowId)}}" role="button"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -64,10 +64,28 @@
                         <div class="card-body p-4">
 
                             <div class="row">
+                                @if(Auth::user())
                                 <div class="col-md-4 ">
                                     <div class="row-5 mx-2 my-2">
                                         <label for="name" class="form-label text-dark">Name</label>
-                                        <input class="form-control" type="text" name="name" placeholder="Enter your name" for="name">
+                                        <input class="form-control" type="text" name="name" readonly value="{{Auth::user()->name}}" placeholder="Enter your name" for="name">
+                                    </div>
+
+                                    <div class="row-5 mx-2 my-2">
+                                        <label for="phone" class="form-label text-dark">Phone Number</label>
+                                        <input class="form-control" type="tel" name="phone" placeholder="Enter your phone number" for="phone" value="{{Auth::user()->phone}}">
+                                    </div>
+
+                                    <div class="row-5 mx-2 my-2">
+                                        <label for="address" class="form-label text-dark">Address</label>
+                                        <input class="form-control" type="text" name="address" placeholder="Enter your address" for="address">
+                                    </div>
+                                </div>
+                                @else
+                                <div class="col-md-4 ">
+                                    <div class="row-5 mx-2 my-2">
+                                        <label for="name" class="form-label text-dark">Name</label>
+                                        <input class="form-control" type="text" name="name" readonly  placeholder="Enter your name" for="name">
                                     </div>
 
                                     <div class="row-5 mx-2 my-2">
@@ -80,6 +98,7 @@
                                         <input class="form-control" type="text" name="address" placeholder="Enter your address" for="address">
                                     </div>
                                 </div>
+                                @endif
                                 <div class="col-lg-4">
                                     <div class="d-flex justify-content-between " style="font-weight: 500;">
                                         <p class="mb-2">Subtotal</p>
@@ -93,16 +112,23 @@
 
                                     <hr class="my-4">
                                     @php
-                                    $grand_total = Cart::subtotal()+50;
+                                    $grand_total = (float)str_replace(',','',Cart::subtotal());
                                     @endphp
                                     <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
                                         <p class="mb-2">Grand Total</p>
-                                        <p class="mb-2">৳ {{$grand_total}}</p>
+                                        <p class="mb-2">৳ {{$grand_total+50}}</p>
                                     </div>
+                                    @if(Auth::user())
                                     <div>
-                                        <button type="submit" class="btn btn-primary"> checkout ৳{{$grand_total}}</button>
+                                        <button type="submit" class="btn btn-primary"> Place order ৳{{$grand_total+50}}</button>
                                     </div>
+                                   @else
+                                    <div>
+                                        <a href="{{route('login')}}" class="btn btn-primary"> login first for checkout</a>
+                                    </div>
+                                   @endif
                                 </div>
+
                             </div>
                         </div>
                     </div>

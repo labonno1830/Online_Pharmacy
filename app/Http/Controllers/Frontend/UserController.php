@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Cart;
+use Illuminate\Contracts\Session\Session;
 
 class UserController extends Controller
 {
@@ -58,8 +59,8 @@ class UserController extends Controller
   public function userdashboard()
   {
     $users = Auth::user();
-    $orders= orderlist::all();
-    return view('frontend.layout.userdashboard', compact('users','orders'));
+    $orders = orderlist::all();
+    return view('frontend.layout.userdashboard', compact('users', 'orders'));
   }
   public function master()
   {
@@ -159,7 +160,7 @@ class UserController extends Controller
   public function order(Request $request)
   {
     $cart = Cart::content();
-    $sub_total=Cart::subtotal();
+    $sub_total = Cart::subtotal();
     $grand_total = Cart::subtotal() + 50;
     $order = orderlist::create([
       'name' => $request->name,
@@ -169,20 +170,27 @@ class UserController extends Controller
     ]);
     foreach ($cart as $data) {
       sub_orderlist::create([
-        'med_name'=>$data->name,
-        'order_id'=>$order->id,
-        'quantity'=>$data->qty,
-        'price'=>$data->price,
-        'sub_total'=>$sub_total,
+        'med_name' => $data->name,
+        'order_id' => $order->id,
+        'quantity' => $data->qty,
+        'price' => $data->price,
+        'sub_total' => $sub_total,
       ]);
+      $medicines = medicines::where('medicine_name', '=', $data->name)->get();
+      foreach ($medicines as $key => $medicine) {
+        $med_quantity = (float)str_replace(',', '', $medicine->quantity) - $data->qty;
+        medicines::where('medicine_name', '=', $data->name)->update([
+          'quantity' => $med_quantity
+        ]);
+      }
     }
-    Cart::destroy();
-    return redirect()->route('homepage');
-  }
-// public function deleteodr($id)
-// {
-//   $rowId = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
 
-//   Cart::remove($rowId);
-// }
+    Cart::destroy();
+    return redirect()->route('homepage')->with('message', 'Your order has been placed');
+  }
+  public function deleteodr($id)
+  {
+    Cart::remove($id);
+    return back();
+  }
 }

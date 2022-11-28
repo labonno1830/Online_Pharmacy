@@ -36,6 +36,7 @@
                         </thead>
                         <tbody>
                             @foreach($orders as $key=>$order)
+                            @if($order->name == $users->name)
                             <tr>
                                 <th scope="row">{{$key+1}}</th>
                                 <td>{{$order->name}}</td>
@@ -46,6 +47,7 @@
                                     <span class="badge rounded-pill text-bg-danger">Pending</span>
                                 </td>
                             </tr>
+                            @endif
                             @endforeach
                         </tbody>
                     </table>

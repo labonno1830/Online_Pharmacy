@@ -7,6 +7,7 @@ use App\Models\medicine;
 use App\Models\medicines;
 use App\Models\orderlist;
 use App\Models\sub_orderlist;
+use App\Models\supplier;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -31,19 +32,43 @@ public function sub_order()
     $sub=sub_orderlist::all();
     return view('backend.layout.sub_orderlist', compact('sub'));
 }
-public function sales()
+public function supplier()
 {
-    return view('backend.layout.sales');
+    $suppliers=supplier::all();
+    return view('backend.layout.supplier', compact('suppliers'));
+}
+public function suppliers(Request $request)
+{
+    $request->validate(
+        [
+            'name'=>['required'],
+            'phone'=>['required'],
+            'email'=>['required'],
+        ]
+        );
+        supplier::create([
+            'name'=>$request->name,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+           ]);
+        return redirect()->back();
+
+}
+public function delete_supplier($id){
+
+    $suppliers=supplier::find($id)->delete();
+    return redirect()->back();
 }
 public function master()
 {
     return view('backend.layout.dashboard');
 }
 
-public function category()
+public function add_medicine()
 {
     $medicines=medicines::all();
-    return view('backend.layout.category',compact('medicines'));
+    $suppliers=supplier::all();
+    return view('backend.layout.add_medicine',compact('medicines' ,'suppliers'));
 }
 public function medicines(Request $request)
 {
@@ -73,6 +98,7 @@ public function medicines(Request $request)
     'expiry_date'=>$request->expiry_date,
     'price'=>$request->price,
     'specification'=>$request->specification,
+    'supplier'=>$request->supplier,
     'upload'=>$filename,
    ]);
 return redirect()->back();

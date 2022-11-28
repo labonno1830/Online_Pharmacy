@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('expiry_date');
             $table->string('price');
             $table->string('specification')->nullable();
+            $table->string('supplier_id');
             $table->string('upload');
             $table->boolean('status')->default(0);
             $table->timestamps();

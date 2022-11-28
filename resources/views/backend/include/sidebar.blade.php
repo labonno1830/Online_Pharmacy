@@ -11,7 +11,7 @@
             </span>
             <span class="text">Dashboard</span>
           </a>
-          <a href="{{route('category')}}" class="active">
+          <a href="{{route('add_medicine')}}" class="active">
             <span class="icon">
              <i class="fa-sharp fa-solid fa-tablets"></i>
             </span>
@@ -41,11 +41,12 @@
             </span>
             <span class="text">Sub-orderlist</span>
           </a>
-          <a href="{{route('sales')}}" class="active">
+          
+          <a href="{{route('supplier')}}" class="active">
             <span class="icon">
-              <i class="fa-solid fa-inbox"></i>
+            <i class="fa-solid fa-truck-ramp-box"></i>
             </span>
-            <span class="text">Sales</span>
+            <span class="text">Supplier</span>
           </a>
         </ul>
       </div>
