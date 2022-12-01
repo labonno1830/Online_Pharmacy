@@ -9,7 +9,6 @@
         <th scope="col">#</th>
         <!-- <th scope="col">Invoice No</th> -->
         <th scope="col">Medicine Name</th>
-        <th scope="col">Order ID</th>
         <th scope="col">Price</th>
         <th scope="col">Quantity</th>
         <th scope="col">Sub total</th>
@@ -17,11 +16,9 @@
       </tr>
     </thead>
     <tbody>
-    @foreach($sub as $key=>$sub_orderlist)
+    @foreach($sub as $sub_orderlist)
       <tr>
-        <th scope="row">{{$key+1}}</th>
         <td>{{$sub_orderlist->med_name}}</td>
-        <td>{{$sub_orderlist->order_id}}</td>
         <td>{{$sub_orderlist->price}}</td>
         <td>{{$sub_orderlist->quantity}}</td>
         <td>{{$sub_orderlist->sub_total}}</td>

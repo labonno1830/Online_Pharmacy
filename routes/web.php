@@ -52,11 +52,16 @@ Route::get('/editadmin/{id}',[AdminController::class,'editadmin'])->name('editad
 Route::put('/updateadmin/{id}',[AdminController::class,'updateadmin'])->name('updateadmin');
 
 Route::get('/order',[AdminController::class,'order'])->name('order');
-Route::get('/sub_order',[AdminController::class,'sub_order'])->name('sub_order');
+Route::get('/sub_order/{id}',[AdminController::class,'sub_order'])->name('sub_order');
+
 
 Route::get('/supplier',[AdminController::class,'supplier'])->name('supplier');
 Route::post('/create/supplier',[AdminController::class,'suppliers'])->name('suppliers');
 Route::get('/delete_supplier/{id}',[AdminController::class,'delete_supplier'])->name('delete_supplier');
+
+Route::get('/doctor',[AdminController::class,'doctor'])->name('doctor');
+Route::post('/create/doctor',[AdminController::class,'doctors'])->name('doctors');
+Route::get('/delete_doctor/{id}',[AdminController::class,'delete_doctor'])->name('delete_doctor');
 
 Route::get('/customer',[AdminController::class,'customer'])->name('customer');
 

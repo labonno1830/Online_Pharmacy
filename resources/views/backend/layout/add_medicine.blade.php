@@ -31,7 +31,7 @@
         <input class="form-control" type="text" name="price" for="price">
       </div>
       <div class="col-md-6">
-      <label class="form-label text-dark">Supplier</label>
+        <label class="form-label text-dark">Supplier</label>
         <select class="form-select supplier" name="supplier" id="supplier">
           <option selected>select one</option>
           @foreach($suppliers as $key => $supplier)
@@ -47,7 +47,7 @@
         <label for="specification" class="form-label text-dark">Specification</label>
         <textarea class="form-control" type="text" name="specification" for="specification" rows="10"></textarea>
       </div>
-      
+
       <div class="col-12 mt-2">
         <button type="submit" class="btn btn-primary">Save</button>
       </div>
@@ -83,7 +83,7 @@
             <td>{{$medicine->expiry_date}}</td>
             <td>{{$medicine->price}}</td>
             <td>{{$medicine->specification}}</td>
-          <td>{{$medicine->supplier->name}}</td>
+            <td>{{$medicine->supplier->name}}</td>
             <td>
               @if($medicine->status == 1 && $medicine->quantity != 0)
 
@@ -97,7 +97,7 @@
                 <a class="btn btn-danger rounded-pill" href="#" role="button">Inctive</a>
               </div>
               @endif
-            
+
             </td>
             <td>
               @if($medicine->upload !=null)

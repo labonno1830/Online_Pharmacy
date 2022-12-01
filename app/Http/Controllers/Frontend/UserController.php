@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Session\Session;
 
 class UserController extends Controller
@@ -168,6 +168,8 @@ class UserController extends Controller
       'total' => $grand_total,
       'address' => $request->address,
     ]);
+    // dd($order);
+
     foreach ($cart as $data) {
       sub_orderlist::create([
         'med_name' => $data->name,

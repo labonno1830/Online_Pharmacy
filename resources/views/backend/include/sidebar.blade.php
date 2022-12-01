@@ -35,11 +35,12 @@
             </span>
             <span class="text">Orders</span>
           </a>
-          <a href="{{route('sub_order')}}" class="active">
+         
+          <a href="{{route('doctor')}}" class="active">
             <span class="icon">
-              <i class="fa-solid fa-clipboard"></i>
+            <i class="fa-solid fa-user-doctor"></i>
             </span>
-            <span class="text">Sub-orderlist</span>
+            <span class="text">Doctors</span>
           </a>
           
           <a href="{{route('supplier')}}" class="active">

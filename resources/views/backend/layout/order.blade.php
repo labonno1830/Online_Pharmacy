@@ -13,18 +13,20 @@
         <th scope="col">Address</th>
         <th scope="col">Total</th>
         <th scope="col"> Delivery Status</th>
+        <th>Sub-orderlist</th>
         <!-- <th scope="col">Action</th> -->
       </tr>
     </thead>
     <tbody>
     @foreach($odr as $key=>$orderlist)
       <tr>
-        <th scope="row">{{$key+1}}</th>
+        <td scope="row">{{$key+1}}</td>
         <td>{{$orderlist->name}}</td>
         <td>{{$orderlist->phone}}</td>
         <td>{{$orderlist->address}}</td>
         <td>{{$orderlist->total}}</td>
         <td></td>
+        <td><a href="{{route('sub_order', $orderlist->id)}}" class="btn btn-success">view</a></td>
       </tr>
       @endforeach
     </tbody>

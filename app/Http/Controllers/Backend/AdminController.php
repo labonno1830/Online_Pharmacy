@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\doctor;
 use App\Models\medicine;
 use App\Models\medicines;
 use App\Models\orderlist;
@@ -27,9 +28,10 @@ public function order()
     $odr=orderlist::all();
     return view('backend.layout.order', compact('odr'));
 }
-public function sub_order()
+
+public function sub_order($id)
 {
-    $sub=sub_orderlist::all();
+    $sub=sub_orderlist::find($id);
     return view('backend.layout.sub_orderlist', compact('sub'));
 }
 public function supplier()
@@ -59,6 +61,40 @@ public function delete_supplier($id){
     $suppliers=supplier::find($id)->delete();
     return redirect()->back();
 }
+public function doctor()
+{
+    $doctors=doctor::all();
+    return view('backend.layout.doctor', compact('doctors'));
+}
+public function doctors(Request $request)
+{
+    $request->validate(
+        [
+            'name'=>['required'],
+            'department'=>['required'],
+            'hospital'=>['required'],
+            'phone'=>['required'],
+            'time'=>['required'],
+            'days'=>['required'],
+        ]
+        );
+        doctor::create([
+            'name'=>$request->name,
+            'department'=>$request->department,
+            'hospital'=>$request->hospital,
+            'phone'=>$request->phone,
+            'time'=>$request->time,
+            'days'=>$request->days,
+           ]);
+        return redirect()->back();
+
+}
+public function delete_doctor($id){
+
+    $doctors=doctor::find($id)->delete();
+    return redirect()->back();
+}
+
 public function master()
 {
     return view('backend.layout.dashboard');
