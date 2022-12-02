@@ -2,7 +2,7 @@
 @section('content')
 <div class="listbody">
     <div class="container mt-5">
-        <h4>Doctors</h4>
+        <h4>Doctors Information</h4>
         <form action="{{route('doctors')}}" method="POST" class="col-10 mx-2 my-2">
             @csrf
 
@@ -56,6 +56,8 @@
                 <button type="submit" class="btn btn-primary  reg ">Add</button>
             </div>
         </form>
+
+        <h4>Doctors list</h4>
         <table class="table bg-light mt-3">
             <thead>
                 <tr>

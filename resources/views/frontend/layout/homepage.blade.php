@@ -9,7 +9,8 @@
       @endif
         <div class="row py-4">
             <div class="col-lg-7 pt-5 text-center">
-                <h1>“Always laugh when you can, it is cheap medicine.” </h1>
+            <h1>“Medicines cure diseases, but only doctors can cure patients.”</h1>
+                <!-- <h1>“Always laugh when you can, it is cheap medicine.” </h1> -->
             </div>
         </div>
     </div>

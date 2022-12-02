@@ -31,6 +31,16 @@ a {
                         <a class="nav-link active" aria-current="page" href="#footer-dark">About</a>
                     </li>
 
+                    @if(Auth::user())
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{route('doctors_info')}}">Doctors Information</a>
+                    </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{route('login')}}">Doctors Information</a>
+                    </li>
+                    @endif
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">

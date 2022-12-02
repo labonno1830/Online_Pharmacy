@@ -56,7 +56,7 @@
         <span class="icon">
         <i class="fa-solid fa-user"></i>
         </span>
-        <span class="text">Admin</span>
+        <span class="text">Admin Profile</span>
       </a>
       <a href="{{route('logout')}}" class="active">
         <span class="icon">

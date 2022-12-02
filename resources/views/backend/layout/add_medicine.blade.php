@@ -83,7 +83,7 @@
             <td>{{$medicine->expiry_date}}</td>
             <td>{{$medicine->price}}</td>
             <td>{{$medicine->specification}}</td>
-            <td>{{$medicine->supplier->name}}</td>
+            <td></td>
             <td>
               @if($medicine->status == 1 && $medicine->quantity != 0)
 

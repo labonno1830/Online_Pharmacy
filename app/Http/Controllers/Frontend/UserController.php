@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\doctor;
 use App\Models\medicines;
 use App\Models\orderlist;
 use App\Models\sub_orderlist;
@@ -23,6 +24,11 @@ class UserController extends Controller
   {
     $medicines = medicines::all();
     return view('frontend.layout.homepage', compact('medicines'));
+  }
+  public function doctors_info()
+  {
+    $doctors=doctor::all();
+    return view('frontend.layout.doctors_info' , compact('doctors'));
   }
 
   public function searchmed(Request $request)

@@ -2,7 +2,7 @@
 @section('content')
 <div class="listbody">
     <div class="container mt-5">
-        <h4>Supplier</h4>
+        <h4>Suppliers Information</h4>
         <form action="{{route('suppliers')}}" method="POST" class="col-10 mx-2 my-2">
             @csrf
 
