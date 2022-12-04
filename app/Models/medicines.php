@@ -9,8 +9,5 @@ class medicines extends Model
 {
     use HasFactory;
     protected $guarded=[];
-    public function supplier()
-    {
-        return $this->belongsTo(supplier::class,'supplier','id');
-    }
+  
 }

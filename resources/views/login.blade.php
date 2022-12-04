@@ -31,10 +31,20 @@
           <div class="col-5 mx-2 my-2">
             <label for="email" class="form-label text-dark">Email</label>
             <input class="form-control" type="email" name="email" placeholder="Enter your email" for="email">
+            <span class="text-danger">
+               @error('email')
+                  {{$message}}
+               @enderror
+            </span>
           </div>
           <div class="col-5 mx-2 my-2">
             <label for="password" class="form-label text-dark">Password</label>
             <input class="form-control" type="password" name="password" placeholder="Enter your password" for="password">
+            <span class="text-danger">
+               @error('password')
+                  {{$message}}
+               @enderror
+            </span>
           </div>
           <div class="col-5 mx-2 my-2">
             <button type="submit" class="btn btn-info  reg">Sign in</a>

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('specification')->nullable();
             $table->string('supplier_id');
+            $table->string('category');
             $table->string('upload');
             $table->boolean('status')->default(0);
             $table->timestamps();

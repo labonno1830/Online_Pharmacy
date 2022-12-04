@@ -9,10 +9,15 @@
             <div class="col-5 mx-2 my-2">
                 <label for="name" class="form-label text-dark">Name</label>
                 <input class="form-control" type="text" name="name" for="name">
+                <span class="text-danger">
+                    @error('name')
+                    {{$message}}
+                    @enderror
+                </span>
             </div>
             <div class="col-5 mx-2 my-2">
                 <label class="form-label text-dark">Department</label>
-                <select class="form-select supplier" name="department">
+                <select class="form-select" name="department">
                     <option selected>select one</option>
                     <option>Cardiologists</option>
                     <option>Dermatologists</option>
@@ -24,7 +29,7 @@
             </div>
             <div class="col-5 mx-2 my-2">
                 <label class="form-label text-dark">Hospital</label>
-                <select class="form-select supplier" name="hospital">
+                <select class="form-select" name="hospital">
                     <option selected>select one</option>
                     <option>Popular Diagnostics Center Ltd. (Uttara Branch)</option>
                     <option>Ibn Sina Diagnostic & Consultation Centre, Uttara</option>
@@ -35,16 +40,26 @@
             <div class="col-5 mx-2 my-2">
                 <label for="phone" class="form-label text-dark">Helpline</label>
                 <input class="form-control" type="tel" name="phone" for="phone">
+                <span class="text-danger">
+                    @error('phone')
+                    {{$message}}
+                    @enderror
+                </span>
             </div>
             
             <div class="col-5 mx-2 my-2">
                 <label for="time" class="form-label text-dark">Consultation Time</label>
                 <input class="form-control" type="text" name="time" for="time">
+                <span class="text-danger">
+                    @error('time')
+                    {{$message}}
+                    @enderror
+                </span>
             </div>
             
             <div class="col-5 mx-2 my-2">
                 <label class="form-label text-dark">Consultation Days</label>
-                <select class="form-select supplier" name="days">
+                <select class="form-select" name="days">
                     <option selected>select one</option>
                     <option>Sat-Sun-Mon</option>
                     <option>Tues-Wed-Thurs</option>

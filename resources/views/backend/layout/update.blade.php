@@ -33,14 +33,33 @@
         <input class="form-control" type="text" name="price" for="price" value="{{$med->price}}">
     </div>
     <div class="col-md-6">
-        <label for="specification" class="form-label text-dark">Specification</label>
-        <textarea class="form-control" type="text" name="specification" for="specification" rows="10"  value="{{$med->specification}}"></textarea>
-    </div>
-
-    <div class="col-md-6">
+        <label class="form-label text-dark">Supplier</label>
+        <select class="form-select supplier" name="supplier" id="supplier" value="{{$med->supplier}}">
+          <option selected>select one</option>
+          @foreach($suppliers as $key => $supplier)
+          <option value="{{$supplier->id}}">{{$supplier->name}}</option>
+          @endforeach
+        </select>
+      </div>
+      <div class="col-md-6">
       <label for="upload" class="form-label text-dark">Upload Image</label>
       <input type="file" class="form-control" name="upload" for="upload">
     </div>
+    <div class="col-md-6">
+        <label for="specification" class="form-label text-dark">Specification</label>
+        <textarea class="form-control" type="text" name="specification" for="specification" rows="10"  value="{{$med->specification}}"></textarea>
+    </div>
+    <div class="col-md-6">
+                <label class="form-label text-dark">Category</label>
+                <select class="form-select" name="category" value="{{$med->category}}">
+                    <option selected>select one</option>
+                    <option>Covid-19 essential</option>
+                    <option>Medical items</option>
+                    <option>Medicine</option>
+                </select>
+            </div>
+
+
     <div class="col-md-6">
       <img src="{{'/uploads/medicine'.$med->image}}">
     </div>

@@ -19,10 +19,11 @@ class AdminController extends Controller
 {
     return view('backend.layout.dashboard');
 }
-    public function product()
+public function product()
 {
-    return view('backend.layout.product');
+     return view('backend.layout.product'); 
 }
+
 public function order()
 {
     $odr=orderlist::all();
@@ -112,9 +113,14 @@ public function medicines(Request $request)
     [
         'medicine_name'=>['required'],
         'generic_name'=>['required'],
+        'brand_name'=>['required'],
         'quantity'=>['required'],
         'expiry_date'=>['required'],
         'price'=>['required'],
+        'specification'=>['required'],
+        'supplier'=>['required'],
+        'category'=>['required'],
+        'upload'=>['required'],
 
     ]
     );
@@ -134,7 +140,6 @@ public function medicines(Request $request)
     'expiry_date'=>$request->expiry_date,
     'price'=>$request->price,
     'specification'=>$request->specification,
-    'supplier'=>$request->supplier,
     'upload'=>$filename,
    ]);
 return redirect()->back();
@@ -142,21 +147,25 @@ return redirect()->back();
 }
 public function editmed($id){
     $med=medicines::find($id);
+    $suppliers=supplier::all();
 // dd($med);
-    return view('backend.layout.update',compact('med'));
+    return view('backend.layout.update',compact('med','suppliers'));
 }
 public function updatemed(Request $request)
 {
     // dd($request->all());
    $med=medicines::find($request->id);
+   
     $request->validate(
     [
         'medicine_name'=>['required'],
         'generic_name'=>['required'],
+        'brand_name'=>['required'],
         'quantity'=>['required'],
         'expiry_date'=>['required'],
         'price'=>['required'],
-
+        'specification'=>['required'],
+        'upload'=>['required'],
     ]
     );
     $filename='';
@@ -175,6 +184,8 @@ public function updatemed(Request $request)
     'expiry_date'=>$request->expiry_date,
     'price'=>$request->price,
     'specification'=>$request->specification,
+    'supplier'=>$request->supplier,
+    'category'=>$request->category,
     'upload'=>$filename,
    ]);
 return redirect()->back();

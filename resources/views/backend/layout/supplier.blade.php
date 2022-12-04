@@ -9,16 +9,31 @@
             <div class="col-5 mx-2 my-2">
                 <label for="name" class="form-label text-dark">Name</label>
                 <input class="form-control" type="text" name="name" placeholder="Enter your name" for="name">
+                <span class="text-danger">
+                    @error('name')
+                    {{$message}}
+                    @enderror
+                </span>
             </div>
 
             <div class="col-5 mx-2 my-2">
                 <label for="phone" class="form-label text-dark">Phone Number</label>
                 <input class="form-control" type="tel" name="phone" placeholder="Enter your phone number" for="phone">
+                <span class="text-danger">
+                    @error('phone')
+                    {{$message}}
+                    @enderror
+                </span>
             </div>
 
             <div class="col-5 mx-2 my-2">
                 <label for="email" class="form-label text-dark">Email</label>
                 <input class="form-control" type="email" name="email" placeholder="Enter your email" for="email">
+                <span class="text-danger">
+                    @error('email')
+                    {{$message}}
+                    @enderror
+                </span>
             </div>
             <div class="col-5 mx-2 my-4">
                 <button type="submit" class="btn btn-primary  reg ">Add</button>
@@ -29,6 +44,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Suppliers id</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Email</th>
                     <th scope="col">Action</th>
@@ -40,6 +56,7 @@
                 <tr>
                     <th scope="row">{{$key+1}}</th>
                     <td>{{$supplier->name}}</td>
+                    <td>{{$supplier->id}}</td>
                     <td>{{$supplier->phone}}</td>
                     <td>{{$supplier->email}}</td>
                     <td>

@@ -25,6 +25,14 @@ class UserController extends Controller
     $medicines = medicines::all();
     return view('frontend.layout.homepage', compact('medicines'));
   }
+public function categories()
+{
+  $medicines = medicines::get();
+return view('frontend.layout.categories',compact('medicines'),);
+
+}
+
+
   public function doctors_info()
   {
     $doctors=doctor::all();
@@ -75,6 +83,16 @@ class UserController extends Controller
 
   public function register(Request $request)
   {
+    $request->validate(
+      [
+        'upload'=>['required'],
+        'name'=>['required'],
+        'phone'=>['required'],
+        'email'=>['required'],
+        'password'=>['required'],
+  
+      ]
+      );
     $filename = '';
     if ($request->hasFile('upload')) {
       $file = $request->file('upload');
