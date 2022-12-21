@@ -51,11 +51,11 @@
     </div>
     <div class="col-md-6">
                 <label class="form-label text-dark">Category</label>
-                <select class="form-select" name="category" value="{{$med->category}}">
+                <select class="form-select" name="category">
                     <option selected>select one</option>
-                    <option>Covid-19 essential</option>
-                    <option>Medical items</option>
-                    <option>Medicine</option>
+                    @foreach($cat as $key =>$category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
                 </select>
             </div>
 

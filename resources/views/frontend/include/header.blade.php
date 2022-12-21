@@ -17,7 +17,7 @@ a {
                 <span class="icon">
                     <i class="fa-solid fa-2x fa-suitcase-medical"></i>
                 </span>
-                <strong>epharma</strong>
+                <strong>OMOS</strong>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -40,21 +40,8 @@ a {
                         <a class="nav-link active" aria-current="page" href="{{route('login')}}">Doctors Information</a>
                     </li>
                     @endif
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('categories')}}">Categories</a>
-                    </li>
-                    <!-- <li class="nav-item dropdown">
-                   
-                        <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Categories
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Covid-19 essential</Covid-19></a></li>
-                            <li><a class="dropdown-item" href="#">Medical items</a></li>
-                            <li><a class="dropdown-item" href="#">Medicine</a></li>
-                        </ul>
-                    </li> -->
-
+                    
+                    
                 </ul>
 
                 <form class="row" role="search" method="GET" action="{{url('/search')}}">

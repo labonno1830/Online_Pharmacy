@@ -13,7 +13,8 @@
                     <th scope="col">Address</th>
                     <th scope="col">Total</th>
                     <th scope="col"> Delivery Status</th>
-                    <th>Sub-orderlist</th>
+                    <th scope="col">Sub-orderlist</th>
+                    <th scope="col">invoice</th>
                     <!-- <th scope="col">Action</th> -->
                 </tr>
             </thead>
@@ -26,10 +27,19 @@
                     <td>{{$orderlist->address}}</td>
                     <td>{{$orderlist->total}}</td>
                     <td>
-                      <span class="badge rounded-pill text-bg-primary">Done</span>
-                      <span class="badge rounded-pill text-bg-danger">Pending</span>
+                        @if($orderlist->status == 0)
+                        <a href="{{route('orderStatus',$orderlist->id)}}" class="btn btn-danger">Pending</a>
+                        @else
+                        <a href="{{route('orderStatus',$orderlist->id)}}" class="btn btn-success">Done</a>
+                        @endif
                     </td>
-                    <td><a href="{{route('sub_order', $orderlist->id)}}" class="btn btn-success">view</a></td>
+                    <td>
+                        <a href="{{route('sub_order', $orderlist->id)}}" class="btn btn-success">view</a>
+                    </td>
+                    <td>
+                        <a href="{{route('invoice', $orderlist->id)}}" class="btn btn-success">view</a>
+                        
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

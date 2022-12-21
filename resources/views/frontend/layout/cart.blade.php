@@ -32,15 +32,14 @@
                                     </td>
                                     <td class="align-middle">
                                         <div class="d-flex flex-row">
-                                            <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-
-                                            <input id="form1" min="1" name="quantity" value="{{$data->qty}}" type="number" class="form-control form-control-sm" style="width: 50px;" />
-
-                                            <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
+                                        <form action=""></form> 
+                                        <form action="{{route('qtyUpdate')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="row_id" value="{{$data->rowId}}">
+                                             <input id="quantity" name="quantity" value="{{$data->qty}}" type="number" class="form-control form-control-sm" style="width: 50px;" />
+                                             
+                                            <button type="submit" class="btn btn-light"><i class="fa-solid fa-rotate-right"></i></button>
+                                            </form>
                                         </div>
                                     </td>
                                     <td class="align-middle">
@@ -78,7 +77,7 @@
 
                                     <div class="row-5 mx-2 my-2">
                                         <label for="address" class="form-label text-dark">Address</label>
-                                        <input class="form-control" type="text" name="address" placeholder="Enter your address" for="address">
+                                        <input class="form-control" type="text" name="address" placeholder="Enter your address" for="address" required>
                                     </div>
                                 </div>
                                 @else
@@ -95,7 +94,7 @@
 
                                     <div class="row-5 mx-2 my-2">
                                         <label for="address" class="form-label text-dark">Address</label>
-                                        <input class="form-control" type="text" name="address" placeholder="Enter your address" for="address">
+                                        <input class="form-control" type="text" name="address" placeholder="Enter your address" for="address" required>
                                     </div>
                                 </div>
                                 @endif

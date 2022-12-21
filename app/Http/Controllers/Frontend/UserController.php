@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\category;
 use App\Models\doctor;
 use App\Models\medicines;
 use App\Models\orderlist;
@@ -22,15 +23,10 @@ class UserController extends Controller
   }
   public function homepage()
   {
+    $cat=category::all();
     $medicines = medicines::all();
-    return view('frontend.layout.homepage', compact('medicines'));
+    return view('frontend.layout.homepage', compact('medicines','cat'));
   }
-public function categories()
-{
-  $medicines = medicines::get();
-return view('frontend.layout.categories',compact('medicines'),);
-
-}
 
 
   public function doctors_info()
@@ -65,10 +61,7 @@ return view('frontend.layout.categories',compact('medicines'),);
     // dd($cart);
     return view('frontend.layout.cart', compact('cart'));
   }
-  public function invoice()
-  {
-    return view('frontend.layout.invoice');
-  }
+  
 
   public function userdashboard()
   {
@@ -76,10 +69,7 @@ return view('frontend.layout.categories',compact('medicines'),);
     $orders = orderlist::all();
     return view('frontend.layout.userdashboard', compact('users', 'orders'));
   }
-  public function master()
-  {
-    return view('frontend.master');
-  }
+
 
   public function register(Request $request)
   {
@@ -137,7 +127,7 @@ return view('frontend.layout.categories',compact('medicines'),);
       'email' => $request->email,
       'password' => Hash::make($request->password),
     ]);
-    return redirect()->back();
+    return redirect('/userdashboard');
   }
 
   public function login_post(Request $request)
@@ -186,7 +176,11 @@ return view('frontend.layout.categories',compact('medicines'),);
     $cart = Cart::content();
     $sub_total = Cart::subtotal();
     $grand_total = Cart::subtotal() + 50;
+    $invoice_word = 'ASDFGHJKLQWERTYUIOPZXCVBNM1234567890';
+    $invoice_shuffle = str_shuffle($invoice_word);
+    $invoice = substr($invoice_shuffle,0,5);
     $order = orderlist::create([
+      'invoice_id' => $invoice,
       'name' => $request->name,
       'phone' => $request->phone,
       'total' => $grand_total,
@@ -214,9 +208,49 @@ return view('frontend.layout.categories',compact('medicines'),);
     Cart::destroy();
     return redirect()->route('homepage')->with('message', 'Your order has been placed');
   }
+
+  public function qtyUpdate(Request $request){
+    cart::update($request->row_id, $request->quantity);
+    return back();
+  }
   public function deleteodr($id)
   {
     Cart::remove($id);
     return back();
   }
+  public function user_sub_orders($id)
+{
+    $sub=sub_orderlist::where('order_id',$id)->get();
+    return view('frontend.layout.user_sub_orders', compact('sub'));
 }
+
+  
+  public function cus_invoice($id){
+
+    $order = orderlist::find($id);
+    $sub_orders= sub_orderlist::where('order_id',$id)->get();
+    $grand_total = Cart::subtotal() + 50;
+    // dd($order);
+    return view('frontend.layout.cus_invoice',compact('order','sub_orders'));
+  }
+  public function see_more($id)
+  {
+    $cat=category::find($id);
+    $medicines = medicines::where('category_id',$id)->get();
+    return view('frontend.layout.see_more',compact('cat','medicines'));
+  }
+  public function request_restock($id)
+{
+    $order_id=medicines::find($id);
+    if ($order_id->request_for_restock == 0) {
+        $updateStatus= 1;
+        $order_id->update(
+            [
+            'request_for_restock'=> $updateStatus
+            ]
+        );
+    }
+    return redirect()->back();
+}
+}
+

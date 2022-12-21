@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('orderlists', function (Blueprint $table) {
             $table->id();
+            $table->string('invoice_id');
             $table->string('name');
             $table->string('phone');
             $table->string('address');
             $table->string('total');
+            $table->integer('status')->default(1);
             $table->timestamps();
             
         });

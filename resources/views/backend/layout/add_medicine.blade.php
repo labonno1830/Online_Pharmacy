@@ -63,12 +63,18 @@
             <div class="col-md-6">
                 <label class="form-label text-dark">Supplier</label>
                 <select class="form-select supplier" name="supplier" id="supplier">
-                    <option selected>select one</option>
+                    <option value="" selected>select one</option>
                     @foreach($suppliers as $key => $supplier)
                     <option value="{{$supplier->id}}">{{$supplier->name}}</option>
                     @endforeach
                 </select>
+                <span class="text-danger">
+                    @error('supplier')
+                    {{$message}}
+                    @enderror
+                </span>
             </div>
+
             <div class="col-md-6">
                 <label for="upload" class="form-label text-dark">Upload Image</label>
                 <input type="file" class="form-control" name="upload" for="upload">
@@ -91,11 +97,16 @@
             <div class="col-md-6">
                 <label class="form-label text-dark">Category</label>
                 <select class="form-select" name="category">
-                    <option selected>select one</option>
-                    <option>Covid-19 essential</option>
-                    <option>Medical items</option>
-                    <option>Medicine</option>
+                    <option value="dsdszfd" selected>select one</option>
+                    @foreach($cat as $key =>$category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
                 </select>
+                <span class="text-danger">
+                    @error('category')
+                    {{$message}}
+                    @enderror
+                </span>
             </div>
 
             <div class="col-12 mt-2">
@@ -120,7 +131,8 @@
                         <th scope="col">Status</th>
                         <th scope="col">Upload Image</th>
                         <th scope="col">Action</th>
-                        <!-- <th scope="col">Action</th> -->
+                        <th scope="col">request for restock</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -134,8 +146,8 @@
                         <td>{{$medicine->expiry_date}}</td>
                         <td>{{$medicine->price}}</td>
                         <td>{{$medicine->specification}}</td>
-                        <td>{{$medicine->supplier}}</td>
-                        <td>{{$medicine->category}}</td>
+                        <td>{{$medicine->supplier->name}}</td>
+                        <td>{{$medicine->category->name}}</td>
                         <td>
                             @if($medicine->status == 1 && $medicine->quantity != 0)
 
@@ -169,6 +181,12 @@
                                 </div>
                             </div>
 
+                        </td>
+                        <td> @if($medicine->status == 0)
+                            <a href="{{route('request_restock',$medicine->id)}}" class="btn btn-danger">restock request</a>
+                            @else
+                            <a href="{{route('request_restock',$medicine->id)}}" class="btn btn-success">Done</a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\category;
 use App\Models\doctor;
 use App\Models\medicine;
 use App\Models\medicines;
@@ -10,6 +11,7 @@ use App\Models\orderlist;
 use App\Models\sub_orderlist;
 use App\Models\supplier;
 use App\Models\User;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,7 +19,13 @@ class AdminController extends Controller
 {
     public function dashboard()
 {
-    return view('backend.layout.dashboard');
+    $medi=medicines::count();
+    $customer=User::where('role_id',2)->count();
+    $category=category::count();
+    $od=orderlist::count();
+    $doc=doctor::count();
+    $supp=supplier::count();
+    return view('backend.layout.dashboard',compact('medi','customer','od','doc','supp','category'));
 }
 public function product()
 {
@@ -29,10 +37,38 @@ public function order()
     $odr=orderlist::all();
     return view('backend.layout.order', compact('odr'));
 }
+public function orderStatus($id)
+{
+    $order_id=orderlist::find($id);
+    if ($order_id->status == 0) {
+        $updateStatus= 1;
+        $order_id->update(
+            [
+            'status'=> $updateStatus
+            ]
+        );
+    }else {
+        $updateStatus= 0;
+        $order_id->update(
+            [
+            'status'=> $updateStatus
+            ]
+        );
+    }
+    return redirect()->back();
+}
+public function invoice($id){
+
+    $order = orderlist::find($id);
+    $sub_orders= sub_orderlist::where('order_id',$id)->get();
+    $grand_total = Cart::subtotal() + 50;
+    // dd($order);
+    return view('backend.layout.invoice',compact('order','sub_orders'));
+  }
 
 public function sub_order($id)
 {
-    $sub=sub_orderlist::find($id);
+    $sub=sub_orderlist::where('order_id',$id)->get();
     return view('backend.layout.sub_orderlist', compact('sub'));
 }
 public function supplier()
@@ -96,7 +132,7 @@ public function delete_doctor($id){
     return redirect()->back();
 }
 
-public function master()
+public function adminmaster()
 {
     return view('backend.layout.dashboard');
 }
@@ -105,25 +141,27 @@ public function add_medicine()
 {
     $medicines=medicines::all();
     $suppliers=supplier::all();
-    return view('backend.layout.add_medicine',compact('medicines' ,'suppliers'));
+    $cat=category::all();
+    return view('backend.layout.add_medicine',compact('medicines' ,'suppliers','cat'));
 }
 public function medicines(Request $request)
 {
-   $request->validate(
-    [
-        'medicine_name'=>['required'],
-        'generic_name'=>['required'],
-        'brand_name'=>['required'],
-        'quantity'=>['required'],
-        'expiry_date'=>['required'],
-        'price'=>['required'],
-        'specification'=>['required'],
-        'supplier'=>['required'],
-        'category'=>['required'],
-        'upload'=>['required'],
-
-    ]
-    );
+    $request->validate(
+        [
+            'medicine_name'=>['required'],
+            'generic_name'=>['required'],
+            'brand_name'=>['required'],
+            'quantity'=>['required'],
+            'expiry_date'=>['required'],
+            'price'=>['required'],
+            'specification'=>['required'],
+            'supplier'=>['required','integer'],
+            'category'=>['required','integer'],
+            'upload'=>['required'],
+            
+            ]
+        );
+        dd($request->all());
     $filename='';
     if($request->hasFile('upload')){
         $file=$request->file('upload');
@@ -140,16 +178,39 @@ public function medicines(Request $request)
     'expiry_date'=>$request->expiry_date,
     'price'=>$request->price,
     'specification'=>$request->specification,
+    'supplier_id'=>$request->supplier,
+    'category_id'=>$request->category,
     'upload'=>$filename,
    ]);
 return redirect()->back();
-    
 }
+
+public function add_category()
+{
+    $cat=category::all();
+    return view('backend.layout.category', compact('cat'));
+
+}
+public function category(Request $request)
+{
+    $request->validate(
+        [
+            'name'=>['required'],
+        ]
+        );
+        category::create([
+            'name'=>$request->name,
+           ]);
+        return redirect()->back();
+}
+    
+
 public function editmed($id){
     $med=medicines::find($id);
     $suppliers=supplier::all();
+    $cat=category::all();
 // dd($med);
-    return view('backend.layout.update',compact('med','suppliers'));
+    return view('backend.layout.update',compact('med','suppliers','cat'));
 }
 public function updatemed(Request $request)
 {
@@ -165,7 +226,6 @@ public function updatemed(Request $request)
         'expiry_date'=>['required'],
         'price'=>['required'],
         'specification'=>['required'],
-        'upload'=>['required'],
     ]
     );
     $filename='';
@@ -184,11 +244,13 @@ public function updatemed(Request $request)
     'expiry_date'=>$request->expiry_date,
     'price'=>$request->price,
     'specification'=>$request->specification,
-    'supplier'=>$request->supplier,
-    'category'=>$request->category,
+    'supplier_id'=>$request->supplier,
+    'category_id'=>$request->category,
     'upload'=>$filename,
+    'request_for_restock' => 0,
+    'status' => 0
    ]);
-return redirect()->back();
+return redirect('/add_medicine');
     
 }
 public function deletemed($id){
@@ -216,7 +278,7 @@ public function editadmin($id){
   }
 public function updateadmin(Request $request)
 {
-    dd($request->all());
+    // dd($request->all());
     $cus=User::find($request->id);
   
     $filename='';
@@ -234,7 +296,7 @@ public function updateadmin(Request $request)
       'email'=>$request->email,
       'password'=>Hash::make($request->password),
    ]);
-  return redirect()->back();
+  return redirect('/adminprofile');
     
 }
 

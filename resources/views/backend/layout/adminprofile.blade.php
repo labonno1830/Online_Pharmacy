@@ -17,7 +17,7 @@
                 <span class="text-black-50"><strong>Phone:</strong> {{$user->phone}}</span>
             </div>
             <div class="d-flex flex-column align-items-center text-center">
-                <a class="btn btn-primary" href="{{route('edituser',$user->id)}}" role="button"><i class="fa-solid fa-pen-nib"></i> Edit User Profile</a>
+                <a class="btn btn-primary" href="{{route('editadmin',$user->id)}}" role="button"><i class="fa-solid fa-pen-nib"></i> Edit User Profile</a>
             </div>
         </div>
 

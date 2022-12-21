@@ -23,5 +23,13 @@ class adminseeder extends Seeder
             'password'=>Hash::make('12345678'),
             'role_id'=>1
            ]);
+
+           User::create([
+            'name'=>'ashdvbadjkzhb',
+            'phone'=>'01643393975',
+            'email'=>'user@gmail.com',
+            'password'=>Hash::make('1234'),
+            'role_id'=>2
+           ]);
     }
 }

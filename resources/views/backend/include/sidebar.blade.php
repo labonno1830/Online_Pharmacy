@@ -11,6 +11,12 @@
             </span>
             <span class="text">Dashboard</span>
           </a>
+          <a href="{{route('add_category')}}" class="active">
+            <span class="icon">
+            <i class="fa-solid fa-list"></i>
+            </span>
+            <span class="text">Category</span>
+          </a>
           <a href="{{route('add_medicine')}}" class="active">
             <span class="icon">
              <i class="fa-sharp fa-solid fa-tablets"></i>

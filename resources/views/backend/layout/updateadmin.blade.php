@@ -1,7 +1,8 @@
 @extends('Backend.master')
 @section('content')
-
-<div class="container rounded bg-white mt-5 mb-5">
+<div class="listbody">
+  <div class="container mt-5">
+<!-- <div class="container rounded bg-white mt-5 mb-5"> -->
     <div class="row">
         <form action="{{route('updateadmin',$cus->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -43,6 +44,7 @@
 
 
 </form>
+</div>
 </div>
 </div>
 @endsection
