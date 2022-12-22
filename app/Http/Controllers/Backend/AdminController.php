@@ -102,7 +102,8 @@ public function delete_supplier($id){
 public function doctor()
 {
     $doctors=doctor::all();
-    return view('backend.layout.doctor', compact('doctors'));
+    $cate=doc_category::all();
+    return view('backend.layout.doctor', compact('doctors','cate'));
 }
 public function doctors(Request $request)
 {
@@ -204,6 +205,26 @@ public function category(Request $request)
            ]);
         return redirect()->back();
 }
+
+public function add_doc_category()
+{
+    $cate=doc_category::all();
+    return view('backend.layout.doc_category', compact('cate'));
+
+}
+public function doc_category(Request $request)
+{
+    $request->validate(
+        [
+            'name'=>['required'],
+        ]
+        );
+        doc_category::create([
+            'name'=>$request->name,
+           ]);
+        return redirect()->back();
+}
+    
 
 public function editmed($id){
     $med=medicines::find($id);
