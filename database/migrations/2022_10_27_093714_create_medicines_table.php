@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('category_id');
             $table->string('upload');
             $table->boolean('status')->default(0);
-            $table->boolean('request_for_restock')->default(0);
             $table->timestamps();
         });
     }

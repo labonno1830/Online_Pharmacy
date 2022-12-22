@@ -38,7 +38,7 @@
                                             <input type="hidden" name="row_id" value="{{$data->rowId}}">
                                              <input id="quantity" name="quantity" value="{{$data->qty}}" type="number" class="form-control form-control-sm" style="width: 50px;" />
                                              
-                                            <button type="submit" class="btn btn-light"><i class="fa-solid fa-rotate-right"></i></button>
+                                            <button type="submit" class="btn btn-dark">update</button>
                                             </form>
                                         </div>
                                     </td>

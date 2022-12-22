@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('doctors', function (Blueprint $table) {
+        Schema::create('doc_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('department');
-            $table->string('cate_id');
-            $table->string('hospital');
-            $table->string('phone');
-            $table->string('time');
-            $table->string('days');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doctors');
+        Schema::dropIfExists('doc_categories');
     }
 };

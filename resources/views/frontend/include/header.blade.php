@@ -9,7 +9,10 @@ a {
     text-decoration: none;
     transition: 0.3s;
 }
-</style> 
+</style>
+@php
+    $cat = cat();
+@endphp
 <header>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
@@ -19,7 +22,7 @@ a {
                 </span>
                 <strong>OMOS</strong>
             </a>
-            
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -30,18 +33,30 @@ a {
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#footer-dark">About</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-expanded="false">Categories</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                @foreach($cat as $key =>$category)
+                                <a class="dropdown-item" href="{{route('see_more',$category->id)}}">{{$category->name}}</a>
+                                @endforeach
+                            </li>
+                        </ul>
+                    </li>
 
                     @if(Auth::user())
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('doctors_info')}}">Doctors Information</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('doctors_info')}}">Doctors
+                            Information</a>
                     </li>
                     @else
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('login')}}">Doctors Information</a>
                     </li>
                     @endif
-                    
-                    
+
+
                 </ul>
 
                 <form class="row" role="search" method="GET" action="{{url('/search')}}">
@@ -51,16 +66,17 @@ a {
                     </div>
                     @if(Auth::user())
                     <div class="dropdown col-md-2">
-                        <button class="btn btn-outline-light  bg-light  text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i>
+                        <button class="btn btn-outline-light  bg-light  text-dark dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>
                         </button>
-                       <ul class="dropdown-menu">
+                        <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{route('userdashboard')}}"><i
                                         class="fa-solid fa-circle-user"></i> dashboard</a></li>
                             <li><a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i>
                                     logout</a></li>
                         </ul>
-                    </div> 
+                    </div>
                     @else
                     <div class="col-md-2">
                         <a class="btn btn-outline-light bg-light text-dark" href="{{route('login')}}">login</a>
@@ -68,10 +84,11 @@ a {
                     @endif
 
                     <div class="col-md-2">
-                        <a class="btn btn-outline-light  bg-light  text-dark" href="{{route('cart')}}"><i class="fa-solid fa-cart-shopping">{{count(Cart::content())}}</i></a>
+                        <a class="btn btn-outline-light  bg-light  text-dark" href="{{route('cart')}}"><i
+                                class="fa-solid fa-cart-shopping">{{count(Cart::content())}}</i></a>
                     </div>
                 </form>
-      
+
             </div>
         </div>
     </nav>

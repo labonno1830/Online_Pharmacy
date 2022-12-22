@@ -2,8 +2,8 @@
 @section('content')
 <div class="listbody">
     <div class="container mt-5">
-        <h4>Categories</h4>
-        <form action="{{route('category')}}" method="POST" class="col-10 mx-2 my-2" >
+        <h4>Doctor Categories</h4>
+        <form action="{{route('doc_category')}}" method="POST" class="col-10 mx-2 my-2" >
             @csrf
 
             <div class="col-5 mx-2 my-2">
@@ -22,7 +22,7 @@
         </form>
 
         <div class="my-4">
-            <h4>Category List</h4>
+            <h4>Doctors Category List</h4>
             <table class="table bg-light mt-4">
                 <thead>
                     <tr>
@@ -32,10 +32,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($cat as $category)
+                    @foreach($cate as $categories)
                     <tr>
-                        <th scope="row">{{$category->id}}</th>
-                        <td>{{$category->name}}</td>
+                        <th scope="row">{{$categories->id}}</th>
+                        <td>{{$categories->name}}</td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -131,7 +131,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Upload Image</th>
                         <th scope="col">Action</th>
-                        <th scope="col">request for restock</th>
+                       
 
                     </tr>
                 </thead>
@@ -182,12 +182,7 @@
                             </div>
 
                         </td>
-                        <td> @if($medicine->status == 0)
-                            <a href="{{route('request_restock',$medicine->id)}}" class="btn btn-danger">restock request</a>
-                            @else
-                            <a href="{{route('request_restock',$medicine->id)}}" class="btn btn-success">Done</a>
-                            @endif
-                        </td>
+                      
                     </tr>
                     @endforeach
                 </tbody>

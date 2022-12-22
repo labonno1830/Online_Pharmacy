@@ -1,16 +1,16 @@
 @extends('Frontend.master')
 @section('content')
-<style>
-
-.see{
+<!-- <style>
+.see {
     flex-direction: row-reverse;
     color: black;
     font-size: 20px;
 }
-.see:hover{
+
+.see:hover {
     color: blue;
 }
-</style>
+</style> -->
 <section class="main">
     <div class="container py-5">
         @if(session()->has('message'))
@@ -27,14 +27,10 @@
     </div>
 </section>
 <section class="product">
+    
     <div class="container py-5">
         <div class="row">
-            @foreach($cat as $category)
-            <div class="alert alert-info" role="alert">
-                <h3>{{$category->name}}</h3>
-            </div>
             @foreach($medicines as $key=>$medicine)
-            @if($category->id == $medicine->category_id)
             <div class="col-lg-2 text-center ">
                 <div class="card border-0 bg-light">
                     <div class="card body">
@@ -49,10 +45,10 @@
                 <a class="btn btn-outline-light bg-primary text-light m-2"
                     href="{{route('details',$medicine->id)}}">View Details</a>
             </div>
-            @endif
+         
             @endforeach
-            <a class="see" href="{{route('see_more',$category->id)}}">See more>></a>
-            @endforeach
+            
+            
         </div>
     </div>
 </section>

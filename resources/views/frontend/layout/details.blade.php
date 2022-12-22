@@ -36,7 +36,6 @@ body {
                 <a class="btn btn-outline-light  bg-success  text-light" href="#">In stock</a>
                 @else
                 <a class="btn btn-outline-light  bg-danger  text-light" href="#">Out of stock</a>
-                <a class="btn btn-outline-light  bg-success  text-light" href="{{route('request_restock',$medicine->id)}}">Request for restock</a>
                 @endif
 
                 

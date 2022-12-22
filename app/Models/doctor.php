@@ -9,4 +9,8 @@ class doctor extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    public function doc_category()
+    {
+       return $this->belongsTo(doc_category::class,'cate_id','id');
+    }
 }

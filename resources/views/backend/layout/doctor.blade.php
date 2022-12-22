@@ -17,14 +17,17 @@
             </div>
             <div class="col-5 mx-2 my-2">
                 <label class="form-label text-dark">Department</label>
-                <select class="form-select" name="department">
-                    <option selected>select one</option>
-                    <option>Cardiologists</option>
-                    <option>Dermatologists</option>
-                    <option>Gynecologists</option>
-                    <option>Endocrinologists</option>
-                    <option>Gastroenterologists</option>
-                    <option>Neurologists</option>
+                <select class="form-select" name="cate_id">
+                    <option value="dsdszfd" selected>select one</option>
+                    @foreach($cate as $categories)
+                    <option value="{{$categories->id}}">{{$categories->name}}</option>
+                    @endforeach
+                </select>
+                <span class="text-danger">
+                    @error('cate_id')
+                    {{$message}}
+                    @enderror
+                </span>
                 </select>
             </div>
             <div class="col-5 mx-2 my-2">
@@ -36,7 +39,7 @@
                     <option>LABAID Diagnostic Uttara-02</option>
                 </select>
             </div>
-            
+
             <div class="col-5 mx-2 my-2">
                 <label for="phone" class="form-label text-dark">Helpline</label>
                 <input class="form-control" type="tel" name="phone" for="phone">
@@ -46,7 +49,7 @@
                     @enderror
                 </span>
             </div>
-            
+
             <div class="col-5 mx-2 my-2">
                 <label for="time" class="form-label text-dark">Consultation Time</label>
                 <input class="form-control" type="text" name="time" for="time">
@@ -56,7 +59,7 @@
                     @enderror
                 </span>
             </div>
-            
+
             <div class="col-5 mx-2 my-2">
                 <label class="form-label text-dark">Consultation Days</label>
                 <select class="form-select" name="days">
@@ -91,7 +94,7 @@
                 <tr>
                     <th scope="row">{{$key+1}}</th>
                     <td>{{$doctor->name}}</td>
-                    <td>{{$doctor->department}}</td>
+                    <td>{{$doctor->doc_category->name}}</td>
                     <td>{{$doctor->hospital}}</td>
                     <td>{{$doctor->phone}}</td>
                     <td>{{$doctor->time}}</td>

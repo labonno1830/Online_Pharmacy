@@ -23,9 +23,8 @@ class UserController extends Controller
   }
   public function homepage()
   {
-    $cat=category::all();
-    $medicines = medicines::all();
-    return view('frontend.layout.homepage', compact('medicines','cat'));
+    $medicines = medicines::orderBy('id','desc')->get();
+    return view('frontend.layout.homepage', compact('medicines'));
   }
 
 
@@ -206,7 +205,7 @@ class UserController extends Controller
     }
 
     Cart::destroy();
-    return redirect()->route('homepage')->with('message', 'Your order has been placed');
+    return redirect()->route('homepage')->with('message', 'Your order has been placed and you can check your order information from userdashboard');
   }
 
   public function qtyUpdate(Request $request){
@@ -239,18 +238,6 @@ class UserController extends Controller
     $medicines = medicines::where('category_id',$id)->get();
     return view('frontend.layout.see_more',compact('cat','medicines'));
   }
-  public function request_restock($id)
-{
-    $order_id=medicines::find($id);
-    if ($order_id->request_for_restock == 0) {
-        $updateStatus= 1;
-        $order_id->update(
-            [
-            'request_for_restock'=> $updateStatus
-            ]
-        );
-    }
-    return redirect()->back();
-}
+
 }
 

@@ -44,7 +44,7 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/cart', [UserController::class, 'cart'])->name('cart');
     Route::get('/addtocart/{id}', [UserController::class, 'addtocart'])->name('addtocart');
 
-    Route::get('/request_restock/{id}', [UserController::class, 'request_restock'])->name('request_restock');
+   
 
     Route::post('/qtyUpdate', [UserController::class, 'qtyUpdate'])->name('qtyUpdate');
     Route::post('/cart/order', [UserController::class, 'order'])->name('cart_order');
@@ -68,6 +68,9 @@ Route::group(['middleware' => 'admin-auth'], function () {
 
     Route::get('/add_category', [AdminController::class, 'add_category'])->name('add_category');
     Route::post('/create/category', [AdminController::class, 'category'])->name('category');
+
+    Route::get('/add_doc_category', [AdminController::class, 'add_doc_category'])->name('add_doc_category');
+    Route::post('/create/doc_category', [AdminController::class, 'doc_category'])->name('doc_category');
 
     Route::get('/adminprofile', [AdminController::class, 'adminprofile'])->name('adminprofile');
     Route::get('/editadmin/{id}', [AdminController::class, 'editadmin'])->name('editadmin');

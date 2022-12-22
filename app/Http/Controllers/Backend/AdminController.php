@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\category;
+use App\Models\doc_category;
 use App\Models\doctor;
 use App\Models\medicine;
 use App\Models\medicines;
@@ -105,19 +106,19 @@ public function doctor()
 }
 public function doctors(Request $request)
 {
-    $request->validate(
-        [
-            'name'=>['required'],
-            'department'=>['required'],
-            'hospital'=>['required'],
-            'phone'=>['required'],
-            'time'=>['required'],
-            'days'=>['required'],
-        ]
-        );
+    // $request->validate(
+    //     [
+    //         'name'=>['required'],
+    //         'department'=>['required','integer'],
+    //         'hospital'=>['required'],
+    //         'phone'=>['required'],
+    //         'time'=>['required'],
+    //         'days'=>['required'],
+    //     ]
+    //     );
         doctor::create([
             'name'=>$request->name,
-            'department'=>$request->department,
+            'cate_id'=>$request->cate_id,
             'hospital'=>$request->hospital,
             'phone'=>$request->phone,
             'time'=>$request->time,
@@ -161,7 +162,7 @@ public function medicines(Request $request)
             
             ]
         );
-        dd($request->all());
+        // dd($request->all());
     $filename='';
     if($request->hasFile('upload')){
         $file=$request->file('upload');
@@ -203,7 +204,6 @@ public function category(Request $request)
            ]);
         return redirect()->back();
 }
-    
 
 public function editmed($id){
     $med=medicines::find($id);
@@ -247,8 +247,7 @@ public function updatemed(Request $request)
     'supplier_id'=>$request->supplier,
     'category_id'=>$request->category,
     'upload'=>$filename,
-    'request_for_restock' => 0,
-    'status' => 0
+    'status' => 1
    ]);
 return redirect('/add_medicine');
     
