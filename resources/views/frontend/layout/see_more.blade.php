@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <h6>{{$medicine->medicine_name}}</h6>
-                <p>{{$medicine->price}}</p>
+                <p>{{$medicine->price}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></p>
                 <a class="btn btn-outline-light bg-primary text-light m-2"
                     href="{{route('details',$medicine->id)}}">View Details</a>
             </div>

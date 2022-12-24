@@ -23,7 +23,7 @@ class UserController extends Controller
   }
   public function homepage()
   {
-    $medicines = medicines::orderBy('id','desc')->get();
+    $medicines = medicines::orderBy('id','desc')->take('6')->get();
     return view('frontend.layout.homepage', compact('medicines'));
   }
 
@@ -65,7 +65,7 @@ class UserController extends Controller
   public function userdashboard()
   {
     $users = Auth::user();
-    $orders = orderlist::all();
+    $orders = orderlist::orderBy('id','desc')->get();;
     return view('frontend.layout.userdashboard', compact('users', 'orders'));
   }
 

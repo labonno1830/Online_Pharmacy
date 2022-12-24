@@ -44,6 +44,7 @@ a {
                             </li>
                         </ul>
                     </li>
+                    
 
                     @if(Auth::user())
                     <li class="nav-item">

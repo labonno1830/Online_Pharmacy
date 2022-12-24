@@ -2,13 +2,9 @@
 
 @section('content')
 <section class="product">
-@if(session()->has('message'))
-      <div class="alert alert-success">
-        {{session()->get('message')}}
-      </div>
-      @endif
+
     <div class="container py-5">
-<div class="row">
+        <div class="row">
             @foreach($searchmed as $key=>$medicine)
             <div class="col-lg-2 text-center ">
                 <div class="card border-0 bg-light">
@@ -21,8 +17,14 @@
                 </div>
                 <h6>{{$medicine->medicine_name}}</h6>
                 <p>{{$medicine->price}}</p>
-                <a class="btn btn-outline-light bg-primary text-light m-2" href="{{route('details',$medicine->id)}}">View Details</a>
+                <a class="btn btn-outline-light bg-primary text-light m-2"
+                    href="{{route('details',$medicine->id)}}">View Details</a>
             </div>
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{session()->get('message')}}
+            </div>
+            @endif
             @endforeach
         </div>
     </div>

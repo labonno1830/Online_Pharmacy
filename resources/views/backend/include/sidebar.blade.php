@@ -19,7 +19,7 @@
           </a>
           <a href="{{route('add_doc_category')}}" class="active">
             <span class="icon">
-            <i class="fa-solid fa-list"></i>
+            <i class="fa-solid fa-layer-group"></i>
             </span>
             <span class="text">Doctors Category</span>
           </a>

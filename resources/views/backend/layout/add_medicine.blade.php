@@ -115,12 +115,22 @@
         </form>
         <div class="my-4">
             <h4>Medicine List</h4>
+            <form action="{{route('add_medicine')}}" method="GET" class="col-7">
+                <div class="form-group row g-3">
+                <div class="col-md-6">
+                    <input type="search" name="search" id="" class="form-control" placeholder="Search here" value="">
+                </div>
+                <div class="col-md-6">   
+                    <button class="btn btn-primary">Search</button>
+                </div>
+                </div>
+            </form>
             <table class="table bg-light mt-4">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Medicine</th>
-                        <th scope="col">Generic Name</th>
+                        <th scope="col"> Generic Name</th>
                         <th scope="col">Brand Name</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Expiry Date</th>
@@ -131,7 +141,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Upload Image</th>
                         <th scope="col">Action</th>
-                       
+
 
                     </tr>
                 </thead>
@@ -182,7 +192,7 @@
                             </div>
 
                         </td>
-                      
+
                     </tr>
                     @endforeach
                 </tbody>

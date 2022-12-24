@@ -23,10 +23,11 @@ class AdminController extends Controller
     $medi=medicines::count();
     $customer=User::where('role_id',2)->count();
     $category=category::count();
+    $doc_cat=doc_category::count();
     $od=orderlist::count();
     $doc=doctor::count();
     $supp=supplier::count();
-    return view('backend.layout.dashboard',compact('medi','customer','od','doc','supp','category'));
+    return view('backend.layout.dashboard',compact('medi','customer','od','doc','supp','category','doc_cat'));
 }
 public function product()
 {
@@ -35,7 +36,7 @@ public function product()
 
 public function order()
 {
-    $odr=orderlist::all();
+    $odr=orderlist::orderBy('id','desc')->get();
     return view('backend.layout.order', compact('odr'));
 }
 public function orderStatus($id)
@@ -107,16 +108,16 @@ public function doctor()
 }
 public function doctors(Request $request)
 {
-    // $request->validate(
-    //     [
-    //         'name'=>['required'],
-    //         'department'=>['required','integer'],
-    //         'hospital'=>['required'],
-    //         'phone'=>['required'],
-    //         'time'=>['required'],
-    //         'days'=>['required'],
-    //     ]
-    //     );
+    $request->validate(
+        [
+            'name'=>['required'],
+            'cate_id'=>['required','integer'],
+            'hospital'=>['required','integer'],
+            'phone'=>['required'],
+            'time'=>['required'],
+            'days'=>['required','integer'],
+        ]
+        );
         doctor::create([
             'name'=>$request->name,
             'cate_id'=>$request->cate_id,
@@ -139,11 +140,17 @@ public function adminmaster()
     return view('backend.layout.dashboard');
 }
 
-public function add_medicine()
+public function add_medicine(Request $request)
 {
-    $medicines=medicines::all();
-    $suppliers=supplier::all();
-    $cat=category::all();
+    if($request->search != null){
+        $medicines = medicines::where('medicine_name','LIKE', $request->search . '%')->get();
+    }
+    else{
+        $medicines=medicines::all();
+       
+    }
+     $suppliers=supplier::all();
+     $cat=category::all();
     return view('backend.layout.add_medicine',compact('medicines' ,'suppliers','cat'));
 }
 public function medicines(Request $request)
@@ -173,19 +180,22 @@ public function medicines(Request $request)
         }
     }
     medicines::create([
-    'medicine_name'=>$request->medicine_name,
-    'generic_name'=>$request->generic_name,
-    'brand_name'=>$request->brand_name,
-    'quantity'=>$request->quantity,
-    'expiry_date'=>$request->expiry_date,
-    'price'=>$request->price,
-    'specification'=>$request->specification,
-    'supplier_id'=>$request->supplier,
-    'category_id'=>$request->category,
-    'upload'=>$filename,
+        'medicine_name'=>$request->medicine_name,
+        'generic_name'=>$request->generic_name,
+        'brand_name'=>$request->brand_name,
+        'quantity'=>$request->quantity,
+        'expiry_date'=>$request->expiry_date,
+        'price'=>$request->price,
+        'specification'=>$request->specification,
+        'supplier_id'=>$request->supplier,
+        'category_id'=>$request->category,
+        'upload'=>$filename,
+        'status' => 1
    ]);
 return redirect()->back();
 }
+
+
 
 public function add_category()
 {
@@ -240,13 +250,16 @@ public function updatemed(Request $request)
    
     $request->validate(
     [
-        'medicine_name'=>['required'],
-        'generic_name'=>['required'],
-        'brand_name'=>['required'],
-        'quantity'=>['required'],
-        'expiry_date'=>['required'],
-        'price'=>['required'],
-        'specification'=>['required'],
+            'medicine_name'=>['required'],
+            'generic_name'=>['required'],
+            'brand_name'=>['required'],
+            'quantity'=>['required'],
+            'expiry_date'=>['required'],
+            'price'=>['required'],
+            'specification'=>['required'],
+            'supplier'=>['required','integer'],
+            'category'=>['required','integer'],
+            'upload'=>['required'],
     ]
     );
     $filename='';

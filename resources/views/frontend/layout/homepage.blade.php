@@ -20,7 +20,8 @@
         @endif
         <div class="row py-4">
             <div class="col-lg-7 pt-5 text-center">
-                <h1>“Medicines cure diseases, but only doctors can cure patients.”</h1>
+            <h1>“MEDICINES HEAL DOUBTS AS WELL AS DISEASES.”</h1>
+                <!-- <h1>“Medicines cure diseases, but only doctors can cure patients.”</h1> -->
                 <!-- <h1>“Always laugh when you can, it is cheap medicine.” </h1> -->
             </div>
         </div>
@@ -41,7 +42,7 @@
                     </div>
                 </div>
                 <h6>{{$medicine->medicine_name}}</h6>
-                <p>{{$medicine->price}}</p>
+                <p>{{$medicine->price}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></p>
                 <a class="btn btn-outline-light bg-primary text-light m-2"
                     href="{{route('details',$medicine->id)}}">View Details</a>
             </div>

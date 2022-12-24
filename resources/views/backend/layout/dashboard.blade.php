@@ -41,7 +41,15 @@
                         <h4>{{$category}}</h4>
                     </div>
                 </div>
-
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-12 my-3 text-center">
+                <div class="card mycard  border-0 bg-primary">
+                    <div class="card mycard  body mt-3">
+                    <i class="fa-solid fa-2x fa-layer-group"></i>
+                        <h3>Doctors Category</h3>
+                        <h4>{{$doc_cat}}</h4>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-12 my-3 text-center">
                 <div class="card mycard  border-0 bg-primary">

@@ -8,7 +8,7 @@
                 <div class="card border-0 ">
                     <div class="card body">
                        <h5 class="card-title">{{$doctor->name}}</h5>
-                       <h6 class="card-subtitle mb-2 text-muted">{{$doctor->department}}</h6>
+                       <h6 class="card-subtitle mb-2 text-muted">{{$doctor->doc_category->name}}</h6>
                        <h6 class="card-subtitle mb-2 text-muted">{{$doctor->hospital}}</h6>
                        <h6 class="card-subtitle mb-2 text-muted">{{$doctor->phone}}</h6>
                        <h6 class="card-subtitle mb-2 text-muted">{{$doctor->time}}</h6>
