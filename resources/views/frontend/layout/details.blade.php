@@ -31,21 +31,15 @@ body {
             <div class="col-lg-7">
                 <h3>{{$medicine->medicine_name}}</h3>
                 <h5>Price:৳{{$medicine->price}}</h5>
-
+                @if(Auth::user())
                 @if($medicine->status == 1 && $medicine->quantity != 0)
                 <a class="btn btn-outline-light  bg-success  text-light" href="#">In stock</a>
-                @else
-                <a class="btn btn-outline-light  bg-danger  text-light" href="#">Out of stock</a>
-                @endif
-
-                
-
-                @if(Auth::user())
                 <a class="btn btn-outline-light  bg-secondary  text-light"
                     href="{{route('addtocart',$medicine->id)}}">Add to cart</a>
                 @else
-                <a class="btn btn-outline-light  bg-secondary  text-light" disabled href="#">Add to cart</a>
+                <a class="btn btn-outline-light  bg-danger  text-light" href="#">Out of stock</a>
                 @endif
+                @endif   
             </div>
             
                 

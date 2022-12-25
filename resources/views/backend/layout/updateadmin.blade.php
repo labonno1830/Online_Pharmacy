@@ -34,7 +34,7 @@
                 <input type="file" class="form-control" name="upload" for="upload">
             </div>
             <div class="col-md-10">
-                <img src="{{'/uploads/profile'.$cus->image}}">
+                <img src="{{'/uploads/profile/'.$cus->upload}}">
             </div>
 
             <div class="mt-5 text-center">

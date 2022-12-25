@@ -117,12 +117,13 @@
             <h4>Medicine List</h4>
             <form action="{{route('add_medicine')}}" method="GET" class="col-7">
                 <div class="form-group row g-3">
-                <div class="col-md-6">
-                    <input type="search" name="search" id="" class="form-control" placeholder="Search here" value="">
-                </div>
-                <div class="col-md-6">   
-                    <button class="btn btn-primary">Search</button>
-                </div>
+                    <div class="col-md-6">
+                        <input type="search" name="search" id="" class="form-control" placeholder="Search here"
+                            value="">
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
                 </div>
             </form>
             <table class="table bg-light mt-4">
@@ -146,7 +147,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($medicines as $key=>$medicine)
+                    @forelse($medicines as $key=>$medicine)
                     <tr>
                         <th scope="row">{{$key+1}}</th>
                         <td>{{$medicine->medicine_name}}</td>
@@ -194,7 +195,9 @@
                         </td>
 
                     </tr>
-                    @endforeach
+                    @empty
+                    <h5>No match found</h5>
+                    @endforelse
                 </tbody>
             </table>
         </div>

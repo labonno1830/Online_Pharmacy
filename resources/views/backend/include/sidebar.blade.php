@@ -4,18 +4,19 @@
         <div class="nav_toggle" id="nav-toggle">
           <i class="fa-solid fa-chevron-right"></i>
         </div>
-        <ul class="move">
+        <ul class="move"> 
           <a href="{{route('dashboard')}}" class="active">
             <span class="icon">
               <i class="fa-solid fa-house-medical"></i>
             </span>
             <span class="text">Dashboard</span>
           </a>
+          
           <a href="{{route('add_category')}}" class="active">
             <span class="icon">
             <i class="fa-solid fa-list"></i>
             </span>
-            <span class="text">Category</span>
+            <span class="text">Product Category</span>
           </a>
           <a href="{{route('add_doc_category')}}" class="active">
             <span class="icon">

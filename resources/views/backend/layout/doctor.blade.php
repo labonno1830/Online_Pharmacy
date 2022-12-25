@@ -33,8 +33,8 @@
             <div class="col-5 mx-2 my-2">
                 <label class="form-label text-dark">Hospital</label>
                 <select class="form-select" name="hospital">
-                    <option value="dsdszfd" selected>select one</option>
-                    <option>Popular Diagnostics Center Ltd. (Uttara Branch)</option>
+                    <option selected>select one</option>
+                    <option >Popular Diagnostics Center Ltd. (Uttara Branch)</option>
                     <option>Ibn Sina Diagnostic & Consultation Centre, Uttara</option>
                     <option>LABAID Diagnostic Uttara-02</option>
                 </select>
@@ -63,7 +63,7 @@
             <div class="col-5 mx-2 my-2">
                 <label class="form-label text-dark">Consultation Days</label>
                 <select class="form-select" name="days">
-                <option value="dsdszfd" selected>select one</option>
+                <option selected>select one</option>
                     <option>Sat-Sun-Mon</option>
                     <option>Tues-Wed-Thurs</option>
                     <option>Sat-Mon-Wed</option>

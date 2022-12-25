@@ -90,8 +90,9 @@
             </div>
             <div class="col-md-6">
                 <label for="specification" class="form-label text-dark">Specification</label>
-                <textarea class="form-control" type="text" name="specification" for="specification" rows="10"
-                    value="{{$med->specification}}"></textarea>
+                <textarea class="form-control" type="text" name="specification" for="specification" rows="10">
+                    {{$med->specification}}
+                </textarea>
                 <span class="text-danger">
                     @error('specification')
                     {{$message}}
@@ -115,7 +116,7 @@
 
 
             <div class="col-md-6">
-                <img src="{{'/uploads/medicine'.$med->image}}">
+                <img src="{{'/uploads/medicine/'.$med->upload}}">
             </div>
             <div class="col-12 mt-2">
                 <button class="btn btn-primary profile-button" type="submit">Update</button>

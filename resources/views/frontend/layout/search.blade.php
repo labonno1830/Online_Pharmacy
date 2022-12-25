@@ -5,7 +5,7 @@
 
     <div class="container py-5">
         <div class="row">
-            @foreach($searchmed as $key=>$medicine)
+            @forelse($searchmed as $key=>$medicine)
             <div class="col-lg-2 text-center ">
                 <div class="card border-0 bg-light">
                     <div class="card body">
@@ -20,12 +20,11 @@
                 <a class="btn btn-outline-light bg-primary text-light m-2"
                     href="{{route('details',$medicine->id)}}">View Details</a>
             </div>
-            @if(session()->has('message'))
-            <div class="alert alert-success">
-                {{session()->get('message')}}
+            @empty
+            <div class="alert alert-info" role="alert">
+                <h5>No match found</h5>
             </div>
-            @endif
-            @endforeach
+            @endforelse
         </div>
     </div>
 </section>

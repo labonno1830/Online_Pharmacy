@@ -12,6 +12,7 @@ use App\Models\orderlist;
 use App\Models\sub_orderlist;
 use App\Models\supplier;
 use App\Models\User;
+use File;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -112,10 +113,10 @@ public function doctors(Request $request)
         [
             'name'=>['required'],
             'cate_id'=>['required','integer'],
-            'hospital'=>['required','integer'],
+            'hospital'=>['required'],
             'phone'=>['required'],
             'time'=>['required'],
-            'days'=>['required','integer'],
+            'days'=>['required'],
         ]
         );
         doctor::create([
@@ -171,6 +172,7 @@ public function medicines(Request $request)
             ]
         );
         // dd($request->all());
+        
     $filename='';
     if($request->hasFile('upload')){
         $file=$request->file('upload');
@@ -262,14 +264,24 @@ public function updatemed(Request $request)
             'upload'=>['required'],
     ]
     );
-    $filename='';
-    if($request->hasFile('upload')){
-        $file=$request->file('upload');
-        if($file->isValid()){
-            $filename=date('Ymdhms').'.'.$file->getClientOriginalExtension();
+    
+    $filename = $med->upload;
+    if($request->hasFile('upload'))
+    {
+        $destination = 'uploads/medicine/'.$med->upload;
+        if(File::exists($destination))
+        {
+            File::delete($destination);
+        }
+        $file = $request->file('upload');
+        if($file->isValid())
+        {
+            $filename = date('Ymdhms').'.'.$file->getClientOriginalExtension();
             $file->storeAs('medicine',$filename);
         }
     }
+    
+    
     medicines::find($request->id)->update([
     'medicine_name'=>$request->medicine_name,
     'generic_name'=>$request->generic_name,
@@ -283,7 +295,7 @@ public function updatemed(Request $request)
     'upload'=>$filename,
     'status' => 1
    ]);
-return redirect('/add_medicine');
+ return redirect('/add_medicine');
     
 }
 public function deletemed($id){
@@ -313,15 +325,23 @@ public function updateadmin(Request $request)
 {
     // dd($request->all());
     $cus=User::find($request->id);
-  
-    $filename='';
-    if($request->hasFile('upload')){
-        $file=$request->file('upload');
-        if($file->isValid()){
-            $filename=date('Ymdhms').'.'.$file->getClientOriginalExtension();
+    $filename = $cus->upload;
+    if($request->hasFile('upload'))
+    {
+        $destination = 'uploads/profile/'.$cus->upload;
+        if(File::exists($destination))
+        {
+            File::delete($destination);
+        }
+        $file = $request->file('upload');
+        if($file->isValid())
+        {
+            $filename = date('Ymdhms').'.'.$file->getClientOriginalExtension();
             $file->storeAs('profile',$filename);
         }
     }
+
+  
     User::find($request->id)->update([
       'upload'=>$filename,
       'name'=>$request->name,

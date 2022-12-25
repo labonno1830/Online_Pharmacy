@@ -37,7 +37,7 @@
                 <div class="card mycard  border-0 bg-primary">
                     <div class="card mycard  body mt-3">
                     <i class="fa-solid fa-2x fa-list"></i>
-                        <h3>Category</h3>
+                        <h3>Product Category</h3>
                         <h4>{{$category}}</h4>
                     </div>
                 </div>

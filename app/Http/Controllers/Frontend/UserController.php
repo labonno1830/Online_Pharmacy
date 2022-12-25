@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\category;
+use App\Models\doc_category;
 use App\Models\doctor;
 use App\Models\medicines;
 use App\Models\orderlist;
@@ -27,11 +28,11 @@ class UserController extends Controller
     return view('frontend.layout.homepage', compact('medicines'));
   }
 
-
   public function doctors_info()
   {
+    $doc_cate = doc_category::all();
     $doctors=doctor::all();
-    return view('frontend.layout.doctors_info' , compact('doctors'));
+    return view('frontend.layout.doctors_info' , compact('doc_cate','doctors'));
   }
 
   public function searchmed(Request $request)
@@ -41,7 +42,7 @@ class UserController extends Controller
       $searchmed = medicines::where('medicine_name', 'LIKE', '%' . $request->search . '%')->latest()->paginate(15);
       return view('frontend.layout.search', compact('searchmed'));
     } else {
-      return redirect()->back()->with('message', 'Empty Search');
+      return redirect()->back();
     }
   }
 
@@ -77,7 +78,7 @@ class UserController extends Controller
         'upload'=>['required'],
         'name'=>['required'],
         'phone'=>['required'],
-        'email'=>['required'],
+        'email'=>['required','unique:users'],
         'password'=>['required'],
   
       ]
@@ -110,15 +111,22 @@ class UserController extends Controller
   {
     // dd($request->all());
     $cus = User::find($request->id);
-
-    $filename = '';
-    if ($request->hasFile('upload')) {
-      $file = $request->file('upload');
-      if ($file->isValid()) {
-        $filename = date('Ymdhms') . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('profile', $filename);
-      }
+    $filename = $cus->upload;
+    if($request->hasFile('upload'))
+    {
+        $destination = 'uploads/profile/'.$cus->upload;
+        if(File::exists($destination))
+        {
+            File::delete($destination);
+        }
+        $file = $request->file('upload');
+        if($file->isValid())
+        {
+            $filename = date('Ymdhms').'.'.$file->getClientOriginalExtension();
+            $file->storeAs('profile',$filename);
+        }
     }
+   
     User::find($request->id)->update([
       'upload' => $filename,
       'name' => $request->name,
@@ -174,12 +182,17 @@ class UserController extends Controller
   {
     $cart = Cart::content();
     $sub_total = Cart::subtotal();
-    $grand_total = Cart::subtotal() + 50;
-    $invoice_word = 'ASDFGHJKLQWERTYUIOPZXCVBNM1234567890';
-    $invoice_shuffle = str_shuffle($invoice_word);
-    $invoice = substr($invoice_shuffle,0,5);
+    $grand_total = (float)str_replace(',','',Cart::subtotal()) + 50;
+    // dd($sub_total,$grand_total);
+    $invoice = orderlist::latest('id')->first();
+    if($invoice == null){
+        $invoice_code = "INV-1";
+    }else{
+        $invoice_code= "INV-".$invoice->id;
+        $invoice_code++;
+    }
     $order = orderlist::create([
-      'invoice_id' => $invoice,
+      'invoice_id' => $invoice_code,
       'name' => $request->name,
       'phone' => $request->phone,
       'total' => $grand_total,
@@ -209,8 +222,19 @@ class UserController extends Controller
   }
 
   public function qtyUpdate(Request $request){
-    cart::update($request->row_id, $request->quantity);
-    return back();
+
+    $cart = Cart::get($request->row_id);
+    $stock=medicines::where('id',$cart->id)->first();
+    $new_stock=$stock->quantity - $request->quantity;
+    if($new_stock < 0){
+      return back()->with('message','error');
+    }
+    else
+    {
+      cart::update($request->row_id, $request->quantity);
+      return back();
+    }
+    
   }
   public function deleteodr($id)
   {

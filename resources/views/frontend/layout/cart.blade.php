@@ -35,8 +35,8 @@
                                         <form action=""></form> 
                                         <form action="{{route('qtyUpdate')}}" method="POST">
                                             @csrf
-                                            <input type="hidden" name="row_id" value="{{$data->rowId}}">
-                                             <input id="quantity" name="quantity" value="{{$data->qty}}" type="number" class="form-control form-control-sm" style="width: 50px;" />
+                                            <input type="hidden"   name="row_id" value="{{$data->rowId}}">
+                                             <input id="quantity" min="1" step="1" name="quantity" value="{{$data->qty}}" type="number" class="form-control form-control-sm" style="width: 120px;" />
                                              
                                             <button type="submit" class="btn btn-dark">update</button>
                                             </form>
