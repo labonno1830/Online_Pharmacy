@@ -37,6 +37,7 @@
                     <option >Popular Diagnostics Center Ltd. (Uttara Branch)</option>
                     <option>Ibn Sina Diagnostic & Consultation Centre, Uttara</option>
                     <option>LABAID Diagnostic Uttara-02</option>
+                    <option>Square Hospital</option>
                 </select>
             </div>
 
@@ -59,8 +60,17 @@
                     @enderror
                 </span>
             </div>
-
             <div class="col-5 mx-2 my-2">
+                <label for="days" class="form-label text-dark">Consultation Days</label>
+                <input class="form-control" type="text" name="days" for="days">
+                <span class="text-danger">
+                    @error('days')
+                    {{$message}}
+                    @enderror
+                </span>
+            </div>
+
+            <!-- <div class="col-5 mx-2 my-2">
                 <label class="form-label text-dark">Consultation Days</label>
                 <select class="form-select" name="days">
                 <option selected>select one</option>
@@ -69,7 +79,7 @@
                     <option>Sat-Mon-Wed</option>
                     <option>Sun-Tues-Thurs</option>
                 </select>
-            </div>
+            </div> -->
             <div class="col-5 mx-2 my-4">
                 <button type="submit" class="btn btn-primary  reg ">Add</button>
             </div>

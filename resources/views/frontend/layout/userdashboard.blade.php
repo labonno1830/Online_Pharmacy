@@ -44,9 +44,10 @@
                                 </td>
                                 <td>
                                     @if($order->status == 0)
-                                    <span class="badge rounded-pill text-bg-danger">Pending</span>
+                                    <span class="badge rounded-pill text-bg-primary">Confirmed</span>
+                                   
                                     @else
-                                    <span class="badge rounded-pill text-bg-primary">Done</span>
+                                    <span class="badge rounded-pill text-bg-danger">Pending</span>
                                     @endif
                                 </td>
                                 <td>
