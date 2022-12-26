@@ -76,7 +76,7 @@ class UserController extends Controller
   {
     $request->validate(
       [
-        'upload'=>['required','image','mimes:jpeg,png,jpg'],
+        'upload'=>['image','mimes:jpeg,png,jpg'],
         'name'=>['required'],
         'phone'=>['required'],
         'email'=>['required','unique:users'],
@@ -113,10 +113,9 @@ class UserController extends Controller
     // dd($request->all());
     $request->validate(
       [
-        'upload'=>['required','image','mimes:jpeg,png,jpg'],
-        'phone'=>['required'],
-        'email'=>['required'],
-        'password'=>['required'],
+        'upload'=>['image','mimes:jpeg,png,jpg'],
+        'email'=>['unique:users'],
+        
   
       ]
       );
@@ -141,7 +140,7 @@ class UserController extends Controller
       'upload' => $filename,
       'phone' => $request->phone,
       'email' => $request->email,
-      'password' => Hash::make($request->password),
+      
     ]);
     return redirect('/userdashboard');
   }

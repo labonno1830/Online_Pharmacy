@@ -318,16 +318,10 @@ public function updatemed(Request $request)
    
     $request->validate(
     [
-            'medicine_name'=>['required'],
-            'generic_name'=>['required'],
-            'brand_name'=>['required'],
-            'quantity'=>['required'],
-            'expiry_date'=>['required'],
-            'price'=>['required'],
-            'specification'=>['required'],
+            
             'supplier'=>['required','integer'],
             'category'=>['required','integer'],
-            'upload'=>['required','image','mimes:jpeg,png,jpg'],
+            'upload'=>['image','mimes:jpeg,png,jpg'],
     ]
     );
     
@@ -392,11 +386,7 @@ public function updateadmin(Request $request)
     // dd($request->all());
     $request->validate(
         [
-          'upload'=>['required','image','mimes:jpeg,png,jpg'],
-          'name'=>['required'],
-          'phone'=>['required'],
-          'email'=>['required'],
-          'password'=>['required'],
+          'upload'=>['image','mimes:jpeg,png,jpg'],
     
         ]
         );
@@ -423,7 +413,6 @@ public function updateadmin(Request $request)
       'name'=>$request->name,
       'phone'=>$request->phone,
       'email'=>$request->email,
-      'password'=>Hash::make($request->password),
    ]);
   return redirect('/adminprofile');
     

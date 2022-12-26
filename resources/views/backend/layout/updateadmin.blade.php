@@ -39,15 +39,7 @@
                     @enderror
                 </span>
             </div>
-            <div class="col-md-10">
-                <label for="password" class="form-label text-dark">Password</label>
-                <input class="form-control" type="password" name="password" placeholder="Enter your password" for="password" value="{{$cus->password}}">
-                <span class="text-danger">
-                    @error('password')
-                    {{$message}}
-                    @enderror
-                </span>
-            </div>
+           
             <div class=" col-md-10">
                 <label for="upload" class="form-label text-dark">Upload Image</label>
                 <input type="file" class="form-control" name="upload" for="upload">

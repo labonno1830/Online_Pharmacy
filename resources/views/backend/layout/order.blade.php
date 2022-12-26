@@ -28,7 +28,7 @@
                     <td>{{$orderlist->total}}</td>
                     <td>
                         @if($orderlist->status == 0)
-                        <a href="{{route('orderStatus',$orderlist->id)}}" class="btn btn-success">Confirmed</a>
+                        <p class="btn btn-success">Confirmed</p>
                         
                         @else
                         <a href="{{route('orderStatus',$orderlist->id)}}" class="btn btn-danger">Pending</a>
