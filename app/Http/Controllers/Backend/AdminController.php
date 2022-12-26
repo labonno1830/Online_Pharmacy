@@ -85,7 +85,7 @@ public function suppliers(Request $request)
         [
             'name'=>['required'],
             'phone'=>['required'],
-            'email'=>['required'],
+            'email'=>['required','unique:users'],
         ]
         );
         supplier::create([
@@ -96,6 +96,36 @@ public function suppliers(Request $request)
         return redirect()->back();
 
 }
+
+public function editsup($id)
+  {
+
+    $suppl = supplier::find($id);
+    return view('backend.layout.updatesup', compact('suppl'));
+  }
+  public function updatesup(Request $request)
+  {
+    // dd($request->all());
+    $request->validate(
+      [
+            'name'=>['required'],
+            'phone'=>['required'],
+            'email'=>['required'],
+  
+      ]
+      );
+    $suppl = supplier::find($request->id);
+    
+   
+    supplier::find($request->id)->update([
+        'name'=>$request->name,
+        'phone'=>$request->phone,
+        'email'=>$request->email,
+    ]);
+    return redirect('/supplier');
+  }
+
+
 public function delete_supplier($id){
 
     $suppliers=supplier::find($id)->delete();
@@ -130,6 +160,42 @@ public function doctors(Request $request)
         return redirect()->back();
 
 }
+
+public function editdoc($id)
+  {
+
+    $doct = doctor::find($id);
+    $cate=doc_category::all();
+    return view('backend.layout.updatedoc', compact('doct','cate'));
+  }
+  public function updatedoc(Request $request)
+  {
+    // dd($request->all());
+    $request->validate(
+      [
+        'name'=>['required'],
+        'cate_id'=>['required','integer'],
+        'hospital'=>['required'],
+        'phone'=>['required'],
+        'time'=>['required'],
+        'days'=>['required'],
+  
+      ]
+      );
+    $doct = doctor::find($request->id);
+    $cate=doc_category::all();
+   
+    doctor::find($request->id)->update([
+            'name'=>$request->name,
+            'cate_id'=>$request->cate_id,
+            'hospital'=>$request->hospital,
+            'phone'=>$request->phone,
+            'time'=>$request->time,
+            'days'=>$request->days,
+    ]);
+    return redirect('/doctor');
+  }
+
 public function delete_doctor($id){
 
     $doctors = doctor::find($id)->delete();
@@ -158,7 +224,7 @@ public function medicines(Request $request)
 {
     $request->validate(
         [
-            'medicine_name'=>['required'],
+            'medicine_name'=>['required','unique:medicines'],
             'generic_name'=>['required'],
             'brand_name'=>['required'],
             'quantity'=>['required'],

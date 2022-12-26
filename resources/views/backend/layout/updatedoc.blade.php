@@ -2,13 +2,15 @@
 @section('content')
 <div class="listbody">
     <div class="container mt-5">
-        <h4>Doctors Information</h4>
-        <form action="{{route('doctors')}}" method="POST" class="col-10 mx-2 my-2">
+       
+        <form action="{{route('updatedoc',$doct->id)}}" method="POST" class="col-10 mx-2 my-2">
             @csrf
-
+            @method('PUT')
+            <input type="hidden" name="id" value="{{$doct->id}}">
+            <h4>Update Doctor</h4>
             <div class="col-5 mx-2 my-2">
                 <label for="name" class="form-label text-dark">Name</label>
-                <input class="form-control" type="text" name="name" for="name">
+                <input class="form-control" type="text" name="name" for="name" value="{{$doct->name}}">
                 <span class="text-danger">
                     @error('name')
                     {{$message}}
@@ -17,7 +19,7 @@
             </div>
             <div class="col-5 mx-2 my-2">
                 <label class="form-label text-dark">Department</label>
-                <select class="form-select" name="cate_id">
+                <select class="form-select" name="cate_id"  value="{{$doct->cate_id}}">
                     <option value="" selected>select one</option>
                     @foreach($cate as $categories)
                     <option value="{{$categories->id}}">{{$categories->name}}</option>
@@ -32,9 +34,9 @@
             </div>
             <div class="col-5 mx-2 my-2">
                 <label class="form-label text-dark">Hospital</label>
-                <select class="form-select" name="hospital">
+                <select class="form-select" name="hospital"  value="{{$doct->hospital}}">
                     <option selected>select one</option>
-                    <option>Popular Diagnostics Center Ltd. (Uttara Branch)</option>
+                    <option >Popular Diagnostics Center Ltd. (Uttara Branch)</option>
                     <option>Ibn Sina Diagnostic & Consultation Centre, Uttara</option>
                     <option>LABAID Diagnostic Uttara-02</option>
                     <option>Square Hospital</option>
@@ -43,7 +45,7 @@
 
             <div class="col-5 mx-2 my-2">
                 <label for="phone" class="form-label text-dark">Helpline</label>
-                <input class="form-control" type="tel" name="phone" for="phone">
+                <input class="form-control" type="tel" name="phone" for="phone"  value="{{$doct->phone}}">
                 <span class="text-danger">
                     @error('phone')
                     {{$message}}
@@ -53,7 +55,7 @@
 
             <div class="col-5 mx-2 my-2">
                 <label for="time" class="form-label text-dark">Consultation Time</label>
-                <input class="form-control" type="text" name="time" for="time">
+                <input class="form-control" type="text" name="time" for="time"  value="{{$doct->time}}">
                 <span class="text-danger">
                     @error('time')
                     {{$message}}
@@ -62,7 +64,7 @@
             </div>
             <div class="col-5 mx-2 my-2">
                 <label for="days" class="form-label text-dark">Consultation Days</label>
-                <input class="form-control" type="text" name="days" for="days">
+                <input class="form-control" type="text" name="days" for="days"  value="{{$doct->days}}">
                 <span class="text-danger">
                     @error('days')
                     {{$message}}
@@ -85,49 +87,5 @@
             </div>
         </form>
 
-        <h4>Doctors list</h4>
-        <table class="table bg-light mt-3">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Department</th>
-                    <th scope="col">Hospital</th>
-                    <th scope="col">Helpline</th>
-                    <th scope="col">Consultation Time</th>
-                    <th scope="col">Consultation Days</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($doctors as $key=>$doctor)
-                <tr>
-                    <th scope="row">{{$key+1}}</th>
-                    <td>{{$doctor->name}}</td>
-                    <td>{{$doctor->doc_category->name}}</td>
-                    <td>{{$doctor->hospital}}</td>
-                    <td>{{$doctor->phone}}</td>
-                    <td>{{$doctor->time}}</td>
-                    <td>{{$doctor->days}}</td>
-                    <td>
-                        <div class="row">
-                            <div class="col">
-                                <a class="btn btn-primary" href="{{route('editdoc',$doctor->id)}}" role="button"><i
-                                        class="fa-solid fa-pen-nib"></i></a>
-                            </div>
-                            <div class="col">
-                                <a class="btn btn-danger" href="{{route('delete_doctor',$doctor->id)}}" role="button"><i
-                                        class="fa-solid fa-trash"></i></a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <div class="col-12 mt-3">
-            <a class="btn btn-primary reg" href="{{route('dashboard')}}">Back</a>
-        </div>
-    </div>
-</div>
+        
 @endsection

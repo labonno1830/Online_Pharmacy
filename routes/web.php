@@ -83,11 +83,16 @@ Route::group(['middleware' => 'admin-auth'], function () {
 
 
     Route::get('/supplier', [AdminController::class, 'supplier'])->name('supplier');
-    Route::post('/create/supplier', [AdminController::class, 'suppliers'])->name('suppliers');
+    Route::post('/create/supplier', [AdminController::class, 'suppliers'])->name('suppliers');Route::get('/editsup/{id}', [AdminController::class, 'editsup'])->name('editsup');
+    Route::put('/updatesup/{id}', [AdminController::class, 'updatesup'])->name('updatesup');
     Route::get('/delete_supplier/{id}', [AdminController::class, 'delete_supplier'])->name('delete_supplier');
 
     Route::get('/doctor', [AdminController::class, 'doctor'])->name('doctor');
     Route::post('/create/doctor', [AdminController::class, 'doctors'])->name('doctors');
+
+    Route::get('/editdoc/{id}', [AdminController::class, 'editdoc'])->name('editdoc');
+    Route::put('/updatedoc/{id}', [AdminController::class, 'updatedoc'])->name('updatedoc');
+
     Route::get('/delete_doctor/{id}', [AdminController::class, 'delete_doctor'])->name('delete_doctor');
 
     Route::get('/customer', [AdminController::class, 'customer'])->name('customer');

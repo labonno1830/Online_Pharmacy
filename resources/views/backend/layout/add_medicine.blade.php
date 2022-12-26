@@ -196,7 +196,10 @@
 
                     </tr>
                     @empty
-                    <h5>No match found</h5>
+                    <div class="alert alert-danger" role="alert">
+                        <h5>No match found</h5>
+                    </div>
+
                     @endforelse
                 </tbody>
             </table>

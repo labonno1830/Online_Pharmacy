@@ -60,8 +60,15 @@
                     <td>{{$supplier->phone}}</td>
                     <td>{{$supplier->email}}</td>
                     <td>
-                        <div class="col">
-                            <a class="btn btn-danger" href="{{route('delete_supplier',$supplier->id)}}" role="button"><i class="fa-solid fa-trash"></i></a>
+                        <div class="row">
+                            <div class="col">
+                                <a class="btn btn-primary" href="{{route('editsup',$supplier->id)}}" role="button"><i
+                                        class="fa-solid fa-pen-nib"></i></a>
+                            </div>
+                            <div class="col">
+                                <a class="btn btn-danger" href="{{route('delete_supplier',$supplier->id)}}"
+                                    role="button"><i class="fa-solid fa-trash"></i></a>
+                            </div>
                         </div>
                     </td>
                 </tr>
