@@ -132,7 +132,7 @@ public function doctors(Request $request)
 }
 public function delete_doctor($id){
 
-    $doctors=doctor::find($id)->delete();
+    $doctors = doctor::find($id)->delete();
     return redirect()->back();
 }
 
@@ -167,7 +167,7 @@ public function medicines(Request $request)
             'specification'=>['required'],
             'supplier'=>['required','integer'],
             'category'=>['required','integer'],
-            'upload'=>['required'],
+            'upload'=>['required','image','mimes:jpeg,png,jpg'],
             
             ]
         );

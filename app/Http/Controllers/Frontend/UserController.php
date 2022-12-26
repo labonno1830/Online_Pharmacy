@@ -75,7 +75,7 @@ class UserController extends Controller
   {
     $request->validate(
       [
-        'upload'=>['required'],
+        'upload'=>['required','image','mimes:jpeg,png,jpg'],
         'name'=>['required'],
         'phone'=>['required'],
         'email'=>['required','unique:users'],

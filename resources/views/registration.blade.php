@@ -20,7 +20,7 @@
                 <span class="icon">
                     <i class="fa-solid  fa-suitcase-medical"></i>
                 </span>
-                <strong>epharma</strong>
+                <strong>OMOS</strong>
             </div>
             <div class="col-5 mx-2 my-2">
                 <label for="name" class="form-label text-dark">Name</label>

@@ -35,7 +35,7 @@
                                     <ul class="list-unstyled">
                                         <div class="col-md-4">
                                             <div class="receipt-left">
-                                                <h3>INVOICE # {{$order->invoice_id}}</h3>
+                                                <h3>INVOICE # INV- {{str_pad($order->id,'3','0',STR_PAD_LEFT)}}</h3>
                                             </div>
                                         </div>
                                         <li><strong>Invoiced To</strong></li>

@@ -44,7 +44,7 @@ body {
             
                 
            
-            <h3><strong>Medicine Specifications</strong></h3>
+            <h3><strong>Specifications</strong></h3>
             <div>{{$medicine->specification}}</div>
         </div>
 
