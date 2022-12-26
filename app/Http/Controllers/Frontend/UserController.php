@@ -10,6 +10,7 @@ use App\Models\medicines;
 use App\Models\orderlist;
 use App\Models\sub_orderlist;
 use App\Models\User;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -113,7 +114,6 @@ class UserController extends Controller
     $request->validate(
       [
         'upload'=>['required','image','mimes:jpeg,png,jpg'],
-        'name'=>['required'],
         'phone'=>['required'],
         'email'=>['required'],
         'password'=>['required'],
@@ -139,7 +139,6 @@ class UserController extends Controller
    
     User::find($request->id)->update([
       'upload' => $filename,
-      'name' => $request->name,
       'phone' => $request->phone,
       'email' => $request->email,
       'password' => Hash::make($request->password),

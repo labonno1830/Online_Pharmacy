@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('department');
             $table->string('cate_id');
             $table->string('hospital');
             $table->string('phone');

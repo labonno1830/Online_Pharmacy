@@ -40,6 +40,7 @@
             </div>
         </form>
         <table class="table bg-light mt-3">
+        <h4>Suppliers List</h4>
             <thead>
                 <tr>
                     <th scope="col">#</th>

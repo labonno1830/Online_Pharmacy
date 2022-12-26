@@ -9,15 +9,7 @@
             <input type="hidden" name="id" value="{{$cus->id}}">
             <h4 class="text-right">Edit Profile</h4>
 
-            <div class="col-md-10">
-                <label for="name" class="form-label text-dark">Name</label>
-                <input class="form-control" type="text" name="name" placeholder="Enter your name" for="name" value="{{$cus->name}}">
-                <span class="text-danger">
-                    @error('name')
-                    {{$message}}
-                    @enderror
-                </span>
-            </div>
+            
 
             <div class="col-md-10">
                 <label for="phone" class="form-label text-dark">Phone Number</label>
@@ -57,7 +49,7 @@
                 </span>
             </div>
             <div class="col-md-10">
-                <img src="{{'/uploads/profile/'.$cus->upload}}">
+                <img style="height: 100px; width: 100px;" src="{{'/uploads/profile/'.$cus->upload}}">
             </div>
 
             <div class="mt-5 text-center">
