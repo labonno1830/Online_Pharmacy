@@ -261,7 +261,7 @@ public function updatemed(Request $request)
             'specification'=>['required'],
             'supplier'=>['required','integer'],
             'category'=>['required','integer'],
-            'upload'=>['required'],
+            'upload'=>['required','image','mimes:jpeg,png,jpg'],
     ]
     );
     
@@ -324,6 +324,16 @@ public function editadmin($id){
 public function updateadmin(Request $request)
 {
     // dd($request->all());
+    $request->validate(
+        [
+          'upload'=>['required','image','mimes:jpeg,png,jpg'],
+          'name'=>['required'],
+          'phone'=>['required'],
+          'email'=>['required'],
+          'password'=>['required'],
+    
+        ]
+        );
     $cus=User::find($request->id);
     $filename = $cus->upload;
     if($request->hasFile('upload'))

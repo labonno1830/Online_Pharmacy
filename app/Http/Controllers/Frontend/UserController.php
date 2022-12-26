@@ -110,6 +110,16 @@ class UserController extends Controller
   public function updateuser(Request $request)
   {
     // dd($request->all());
+    $request->validate(
+      [
+        'upload'=>['required','image','mimes:jpeg,png,jpg'],
+        'name'=>['required'],
+        'phone'=>['required'],
+        'email'=>['required'],
+        'password'=>['required'],
+  
+      ]
+      );
     $cus = User::find($request->id);
     $filename = $cus->upload;
     if($request->hasFile('upload'))
